@@ -4,6 +4,9 @@
 dist
 tmp
 /out-tsc
+build/
+coverage/
+coverage/*
 
 # dependencies
 node_modules
@@ -17,6 +20,7 @@ vendor
 *.launch
 .settings/
 *.sublime-workspace
+*.iml
 
 # IDE - VSCode
 .vscode/*
@@ -34,6 +38,10 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.test-results.json
 
 # System Files
 .DS_Store
@@ -44,12 +52,16 @@ Thumbs.db
 
 # Java
 **/target
+
 # Created by `dart pub`
 .dart_tool/
+.pub/
 
 # Avoid committing pubspec.lock for library packages; see
 # https://dart.dev/guides/libraries/private-files#pubspeclock.
 pubspec.lock
+pubspec.lock.failed_tracker
+.failed_tracker
 
 # env files
 .env*
@@ -57,3 +69,14 @@ pubspec.lock
 
 # FVM Version Cache
 .fvm/
+
+# Dartdoc output
+doc/api/
+
+# Avoid committing generated Javascript files:
+*.dart.js
+*.info.json
+*.js
+*.js_
+*.js.deps
+*.js.map
