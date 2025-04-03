@@ -1,0 +1,37 @@
+name: sdjwt
+version: 1.0.0
+description: A Dart SDK for working with Selective Disclosure JSON Web Tokens (SD-JWT) following the SD-JWT specification.
+repository: https://github.com/affinidi/affinidi-sdjwt-dart
+issue_tracker: https://github.com/affinidi/affinidi-sdjwt-dart/issues
+
+topics:
+  - jwt
+  - sd-jwt
+  - selective-disclosure
+  - cryptography
+  - authentication
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  convert: ^3.1.2
+  crypto: ^3.0.6
+  jose_plus: ^0.4.6
+  uuid: ^4.5.1
+  equatable: ^2.0.7
+  crypto_keys_plus: ^0.4.0
+  rfc_6901: ^0.2.0
+  meta: ^1.16.0
+
+dev_dependencies:
+  path: ^1.9.1
+  lints: ^5.1.1
+  test: ^1.25.15
+  mocktail: ^1.0.4
+  melos: ^6.3.2
+
+false_secrets:
+  - /test/resources/*.pem
+  - example/lib/consts.dart
+  - test/data/key_pairs.json

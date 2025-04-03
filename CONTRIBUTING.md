@@ -1,17 +1,35 @@
-# Contributing
+# Contributing to SD-JWT SDK
 
-When contributing to this repository, please first discuss the change you wish to make by creating a new [GitHub issue](https://github.com/affinidi/affinidi-tdk/issues/new).
+When contributing to this repository, please first discuss the change you wish to make by creating a new [GitHub issue](https://github.com/affinidi/affinidi-sdjwt-dart/issues/new).
 
-## Developement Requirements
+## Contributing to SD-JWT SDK
 
+### Requirements
+
+- [Dart SDK 3.6.0 or higher](https://dart.dev/get-dart)
+- [pre-commit](https://pre-commit.com/#install)
+- [gitleaks](https://github.com/gitleaks/gitleaks)
+- [commitizen](https://github.com/commitizen-tools/commitizen)
+
+> Before proceeding to commit, please make sure hooks are installed by running 'dart run hooks:setup'
+
+### Building locally
+
+To build and test the SDK locally, open a terminal and run:
+
+```
+dart pub get
+dart test
+```
 
 ### Code quality expectations
 
 1. Ensure the pipeline checks are finished successfully.
-2. Ensure the pull request doesn't contain redundant comments, console.log, etc.
-3. Ensure your code is covered with unit and integration tests (NOTE: no mocks/stubs in integration tests).
+2. Ensure the pull request doesn't contain redundant comments, debug prints, etc.
+3. Ensure your code is covered with unit and integration tests.
 4. Avoid adding comments to explain what code does, code should be self-explanatory and clean.
 5. Avoid using variable names like `i` or abbreviations - names should be simple and unambiguous.
+6. Follow the [Dart style guide](https://dart.dev/guides/language/effective-dart/style) for consistent code style.
 
 ## Code of Conduct
 
@@ -35,7 +53,7 @@ include:
 - Focusing on what is best for the community
 - Showing empathy towards other community members
 - Avoiding obvious comments about things like code styling and indentation.
-  ** If you see yourself wanting to do that more than once - open an issue with a repo to update the ESLint/Prettier rules to address this concern once and for all. **Code reviews should be about logic, not indenting or adding more newlines\*\*
+  **If you see yourself wanting to do that more than once - open an issue to update the linter rules to address this concern once and for all. Code reviews should be about logic, not indenting or adding more newlines**
 
 Examples of unacceptable behavior by participants include:
 
