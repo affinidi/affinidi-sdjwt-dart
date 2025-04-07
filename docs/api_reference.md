@@ -11,11 +11,11 @@
 
 The main interface for SD-JWT operations:
 
-- [`sign()`](https://pub.dev/documentation/sdjwt/latest/sdjwt/SdJwtHandler/sign.html) - Signs claims with selective disclosure capabilities
-- [`present()`](https://pub.dev/documentation/sdjwt/latest/sdjwt/SdJwtHandler/present.html) - Creates a presentation from an existing SD-JWT
-- [`verify()`](https://pub.dev/documentation/sdjwt/latest/sdjwt/SdJwtHandler/verify.html) - Verifies an SD-JWT and its disclosures
-- [`decodeAndVerify()`](https://pub.dev/documentation/sdjwt/latest/sdjwt/SdJwtHandler/decodeAndVerify.html) - Decodes a serialized SD-JWT string and verifies it in one step. This is the recommended method for processing received SD-JWTs when you have the issuer's public key.
-- [`unverifiedDecode()`](https://pub.dev/documentation/sdjwt/latest/sdjwt/SdJwtHandler/unverifiedDecode.html) - Decodes a serialized SD-JWT string without verifying the signature. Use this when you need to inspect an SD-JWT's contents before verification, such as when building UIs to display available disclosures.
+- `sign()` - Signs claims with selective disclosure capabilities
+- `present()` - Creates a presentation from an existing SD-JWT
+- `verify()` - Verifies an SD-JWT and its disclosures
+- `decodeAndVerify()` - Decodes a serialized SD-JWT string and verifies it in one step. This is the recommended method for processing received SD-JWTs when you have the issuer's public key.
+- `unverifiedDecode()` - Decodes a serialized SD-JWT string without verifying the signature. Use this when you need to inspect an SD-JWT's contents before verification, such as when building UIs to display available disclosures.
 
 ## SdJwt
 

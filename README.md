@@ -50,6 +50,8 @@ For hash calculation in disclosures:
 - `SHA-384`
 - `SHA-512`
 
+You can create your custom signer, hasher, and verifier to extend support for other algorithms. Refer to [this example](docs/examples/custom_algorithm.md) on how to do this.
+
 ## Requirements
 
 - Dart SDK version ^3.6.0
@@ -123,13 +125,13 @@ If you face any issues or have suggestions, please don't hesitate to contact us 
 
 ### Reporting technical issues
 
-If you have a technical issue with the Affinidi TDK's codebase, you can also create an issue directly in GitHub.
+If you have a technical issue with the Affinidi SD-JWT Dart's codebase, you can also create an issue directly in GitHub.
 
 1. Ensure the bug was not already reported by searching on GitHub under
-   [Issues](https://github.com/affinidi/affinidi-ssi-dart/issues).
+   [Issues](https://github.com/affinidi/affinidi-sdjwt-dart/issues).
 
 2. If you're unable to find an open issue addressing the problem,
-   [open a new one](https://github.com/affinidi/affinidi-ssi-dart/issues/new).
+   [open a new one](https://github.com/affinidi/affinidi-sdjwt-dart/issues/new).
    Be sure to include a **title and clear description**, as much relevant information as possible,
    and a **code sample** or an **executable test case** demonstrating the expected behaviour that is not occurring.
 
