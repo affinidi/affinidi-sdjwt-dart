@@ -24,10 +24,12 @@ Represents a Selective Disclosure JWT:
 - Properties:
   - `serialized` - The serialized string representation
   - `payload` - The decoded payload
+  - `header` - The header details of the SD-JWT
   - `claims` - The complete set of claims after applying all disclosures
   - `disclosures` - The set of all disclosures
   - `jwsString` - The JWT part of the SD-JWT
   - `kbString` - The Key Binding JWT part (if present)
+  - `isVerified` - The verification status (boolean) of the SD-JWT
 
 ## Keys and Signing
 
