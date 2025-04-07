@@ -3,9 +3,9 @@
 [![Dart SDK Version](https://img.shields.io/badge/dart-%3E%3D3.6.0-blue.svg)](https://dart.dev)
 [![License: Apache](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
-The Affinidi SD-JWT for Dart provides libraries and tools to enable selective disclosure, enhancing security and privacy in the data-sharing process. It implements the IETF's [Selective Disclosure for JWTs (SD-JWT)](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) and [SD-JWT-based Verifiable Credentials (SD-JWT VC)](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/) specifications. 
+The SD-JWT Dart SDK provides libraries and tools to enable selective disclosure, enhancing security and privacy in the data-sharing process. It implements the IETF's [Selective Disclosure for JWTs (SD-JWT)](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) and [SD-JWT-based Verifiable Credentials (SD-JWT VC)](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/) specifications. 
 
-The Affinidi SD-JWT Dart SDK enables:
+The SD-JWT Dart package enables:
 
 - **Issuer** to create JWTs with selectively disclosable claims.
 - **Holder** to present only specific claims to verifiers.
@@ -36,7 +36,7 @@ SD-JWT introduces several key concepts:
 
 ## Supported Algorithms
 
-The SDK supports the following signing algorithms:
+The package supports the following signing algorithms:
 
 - `ES256` - ECDSA using P-256 curve and SHA-256
 - `ES256K` - ECDSA using secp256k1 curve and SHA-256
