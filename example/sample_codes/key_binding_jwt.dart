@@ -19,10 +19,9 @@ void presentWithKeyBinding(String serializedSdJwt) {
   final holderSigner = SDKeySigner(holderPrivateKey);
 
   // Select which disclosures to keep
-  final disclosuresToKeep =
-      sdJwt.disclosures
-          .where((d) => d.claimName == 'given_name' || d.claimName == 'email')
-          .toSet();
+  final disclosuresToKeep = sdJwt.disclosures
+      .where((d) => d.claimName == 'given_name' || d.claimName == 'email')
+      .toSet();
 
   // Present with key binding
   final presentation = handler.present(

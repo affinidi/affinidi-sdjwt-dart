@@ -6,10 +6,9 @@ void presentSdJwt(String serializedSdJwt) {
   final sdJwt = handler.unverifiedDecode(sdJwtToken: serializedSdJwt);
 
   // Select which disclosures to keep (e.g., only share name and email, not birthdate)
-  final disclosuresToKeep =
-      sdJwt.disclosures
-          .where((d) => d.claimName == 'given_name' || d.claimName == 'email')
-          .toSet();
+  final disclosuresToKeep = sdJwt.disclosures
+      .where((d) => d.claimName == 'given_name' || d.claimName == 'email')
+      .toSet();
 
   // Create a presentation with only selected disclosures
   final presentation = handler.present(
