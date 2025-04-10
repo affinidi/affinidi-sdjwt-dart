@@ -1,9 +1,9 @@
-# SD-JWT Dart SDK
+# SD-JWT Dart TDK
 
 [![Dart SDK Version](https://img.shields.io/badge/dart-%3E%3D3.6.0-blue.svg)](https://dart.dev)
 [![License: Apache](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
-The SD-JWT Dart SDK provides libraries and tools to enable selective disclosure, enhancing security and privacy in the data-sharing process. It implements the IETF's [Selective Disclosure for JWTs (SD-JWT)](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) specification. 
+The SD-JWT Dart TDK (Trust Development Kit) provides libraries and tools to enable selective disclosure, enhancing security and privacy in the data-sharing process. It implements the IETF's [Selective Disclosure for JWTs (SD-JWT)](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) specification. 
 
 The SD-JWT Dart package enables:
 
@@ -50,7 +50,7 @@ For hash calculation in disclosures:
 - `SHA-384`
 - `SHA-512`
 
-You can create your custom signer, hasher, and verifier to extend support for other algorithms. Refer to [this example](docs/examples/custom_algorithm.md) on how to do this.
+You can create your custom signer, hasher, and verifier to extend support for other algorithms. Refer to [this example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/custom_algorithm.md) on how to do this.
 
 ## Requirements
 
@@ -113,11 +113,11 @@ void main() async {
 }
 ```
 
-For more sample usage, go to the [examples folder](docs/examples/), and for an end-to-end example implementation, refer to [this folder](example).
+For more sample usage, go to the [examples folder](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/).
 
 ## API Reference
 
-For the available operations, go to the [API reference page](docs/api_reference.md).
+For the available operations, go to the [API reference page](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/docs/api_reference.md).
 
 ## Support & feedback
 
@@ -139,4 +139,4 @@ If you have a technical issue with the Affinidi SD-JWT Dart's codebase, you can 
 
 Want to contribute?
 
-Head over to our [CONTRIBUTING](CONTRIBUTING.md) guidelines.
+Head over to our [CONTRIBUTING](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/CONTRIBUTING.md) guidelines.

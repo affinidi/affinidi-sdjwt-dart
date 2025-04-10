@@ -1,6 +1,3 @@
-## Verifying an SD-JWT
-
-```dart
 import 'package:sdjwt/sdjwt.dart';
 
 void verifySdJwt(String serializedSdJwt) {
@@ -34,4 +31,3 @@ void verifySdJwt(String serializedSdJwt) {
     print('Verification failed: $e');
   }
 }
-```

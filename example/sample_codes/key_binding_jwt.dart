@@ -1,8 +1,3 @@
-## Working with Key Binding JWT (KB-JWT)
-
-Key Binding JWT (KB-JWT) ensures that only the intended holder can present the SD-JWT:
-
-```dart
 import 'package:sdjwt/sdjwt.dart';
 
 void presentWithKeyBinding(String serializedSdJwt) {

@@ -1,6 +1,3 @@
-## Creating and Signing an SD-JWT
-
-```dart
 import 'package:sdjwt/sdjwt.dart';
 
 void createSdJwt() {
@@ -50,4 +47,3 @@ void createSdJwt() {
   // Example output (truncated):
   // eyJhbGciOiJFUzI1NiIsInR5cCI6InNkK2p3dCJ9.eyJmYW1pbH...~eyJhbGciOiJFUzI1NiJ9.e30~
 }
-```

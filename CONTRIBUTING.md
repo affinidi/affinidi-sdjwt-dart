@@ -1,8 +1,8 @@
-# Contributing to SD-JWT SDK
+# Contributing to SD-JWT TDK
 
 When contributing to this repository, please first discuss the change you wish to make by creating a new [GitHub issue](https://github.com/affinidi/affinidi-sdjwt-dart/issues/new).
 
-## Contributing to SD-JWT SDK
+## Contributing to SD-JWT TDK
 
 ### Requirements
 
@@ -15,7 +15,7 @@ When contributing to this repository, please first discuss the change you wish t
 
 ### Building locally
 
-To build and test the SDK locally, open a terminal and run:
+To build and test the TDK locally, open a terminal and run:
 
 ```
 dart pub get

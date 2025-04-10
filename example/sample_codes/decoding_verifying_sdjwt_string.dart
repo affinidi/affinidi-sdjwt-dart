@@ -1,8 +1,3 @@
-## Decoding and Verifying an SD-JWT from a String
-
-When working with SD-JWTs created by someone else, you'll often receive them as strings. The SDK provides two methods to parse them:
-
-```dart
 import 'package:sdjwt/sdjwt.dart';
 
 void workWithExternalSdJwt(String receivedSdJwtString) {
@@ -48,4 +43,3 @@ void workWithExternalSdJwt(String receivedSdJwtString) {
     print('Verification failed: $e');
   }
 }
-```
