@@ -41,4 +41,3 @@ void presentWithKeyBinding(String serializedSdJwt) {
   // Example output (truncated):
   // eyJhbGciOiJFUzI1NiIsInR5cCI6InNkK2p3dCJ9...~eyJhbGciOiJFUzI1NiJ9.e30~eyJhbGciOiJFUzI1NiJ9...
 }
-```
