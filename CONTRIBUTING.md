@@ -1,10 +1,8 @@
-# Contributing to SD-JWT TDK
+# Contributing to SD-JWT for Dart
 
 When contributing to this repository, please first discuss the change you wish to make by creating a new [GitHub issue](https://github.com/affinidi/affinidi-sdjwt-dart/issues/new).
 
-## Contributing to SD-JWT TDK
-
-### Requirements
+## Requirements
 
 - [Dart SDK 3.6.0 or higher](https://dart.dev/get-dart)
 - [pre-commit](https://pre-commit.com/#install)
@@ -13,16 +11,16 @@ When contributing to this repository, please first discuss the change you wish t
 
 > Before proceeding to commit, please make sure hooks are installed by running 'dart run hooks:setup'
 
-### Building locally
+## Building locally
 
-To build and test the TDK locally, open a terminal and run:
+To build and test the package locally, open a terminal and run:
 
 ```
 dart pub get
 dart test
 ```
 
-### Code quality expectations
+## Code quality expectations
 
 1. Ensure the pipeline checks are finished successfully.
 2. Ensure the pull request doesn't contain redundant comments, debug prints, etc.

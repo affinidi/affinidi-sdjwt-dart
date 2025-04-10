@@ -1,10 +1,10 @@
-## Affinidi SD-JWT Dart TDK
+## SD-JWT for Dart Examples
 
 Check the sample app and code snippets to learn how to integrate this package with your project.
 
 ### 1. Sample app for end-to-end implementation
 
-Set up and run the end-to-end sample implementation of the Affinidi SD-JWT Dart TDK with Flutter - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_app/).
+Set up and run the end-to-end sample implementation of the Affinidi SD-JWT for Dart with Flutter - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_app/).
 
 ### 2. Create and sign SD-JWT
 

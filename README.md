@@ -1,11 +1,11 @@
-# SD-JWT Dart TDK
+# SD-JWT for Dart
 
 [![Dart SDK Version](https://img.shields.io/badge/dart-%3E%3D3.6.0-blue.svg)](https://dart.dev)
 [![License: Apache](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
-The SD-JWT Dart TDK (Trust Development Kit) provides libraries and tools to enable selective disclosure, enhancing security and privacy in the data-sharing process. It implements the IETF's [Selective Disclosure for JWTs (SD-JWT)](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) specification. 
+The SD-JWT for Dart package provides libraries and tools to enable selective disclosure, enhancing security and privacy in the data-sharing process. It implements the IETF's [Selective Disclosure for JWTs (SD-JWT)](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/) specification. 
 
-The SD-JWT Dart package enables:
+The SD-JWT for Dart package enables:
 
 - **Issuer** to create JWTs with selectively disclosable claims.
 - **Holder** to present only specific claims to verifiers.
