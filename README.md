@@ -50,7 +50,7 @@ For hash calculation in disclosures:
 - `SHA-384`
 - `SHA-512`
 
-You can create your custom signer, hasher, and verifier to extend support for other algorithms. Refer to [this example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/custom_algorithm.md) on how to do this.
+You can create your custom signer, hasher, and verifier to extend support for other algorithms. Refer to [this example](example/code_snippets/custom_algorithm.dart) on how to do this.
 
 ## Requirements
 
@@ -113,7 +113,7 @@ void main() async {
 }
 ```
 
-For more sample usage, go to the [examples folder](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/).
+For more sample usage, go to the [example folder](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/).
 
 ## API Reference
 

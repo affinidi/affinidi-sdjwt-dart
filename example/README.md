@@ -8,31 +8,31 @@ Set up and run the end-to-end sample implementation of the Affinidi SD-JWT for D
 
 ### 2. Create and sign SD-JWT
 
-Create and sign the selected disclosures as SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/creating_signing_sdjwt.dart).
+Create and sign the selected disclosures as SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/creating_signing_sdjwt.dart).
 
 ### 3. Create and sign a various disclosure structure
 
-Create and sign the nested disclosures as SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/nested_disclosure_structure.dart).
+Create and sign the nested disclosures as SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/nested_disclosure_structure.dart).
 
-Create and sign the array element disclosures as SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/array_element_disclosures.dart).
+Create and sign the array element disclosures as SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/array_element_disclosures.dart).
 
 ### 4. Verify the SD-JWT
 
-Decode and verify the SD-JWT string often shared to your application - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/decoding_verifying_sdjwt_string.dart).
+Decode and verify the SD-JWT string often shared to your application - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/decoding_verifying_sdjwt_string.dart).
 
-Decode and verify the SD-JWT serialised data - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/verifying_sdjwt.dart).
+Decode and verify the SD-JWT serialised data - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/verifying_sdjwt.dart).
 
 ### 5. Create a Key-binding JWT (KB-JWT)
 
-Key-binding JWT ensures that only the intended holder can present the SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/key_binding_jwt.dart).
+Key-binding JWT ensures that only the intended holder can present the SD-JWT - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/key_binding_jwt.dart).
 
 ### 6. Create an SD-JWT presentation
 
-Create the presentation of the selected disclosure - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/presenting_sdjwt.dart).
+Create the presentation of the selected disclosure - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/presenting_sdjwt.dart).
 
 ### 7. Use a custom algorithm
 
-If you wish to use another algorithm outside of the bundled algorithm from the package, you can extend and implement the following interface - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/sample_codes/custom_algorithm.dart).
+If you wish to use another algorithm outside of the bundled algorithm from the package, you can extend and implement the following interface - [view example](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/code_snippets/custom_algorithm.dart).
 
 - For custom signer, extend the [Signer](https://github.com/affinidi/affinidi-sdjwt-dart/blob/main/lib/src/sign/signer.dart) interface class.
 
