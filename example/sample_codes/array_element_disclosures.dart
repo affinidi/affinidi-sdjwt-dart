@@ -12,9 +12,13 @@ void createArrayElemSdJwt() {
   // Make the phone numbers selectively disclosable while keeping types visible
   final disclosureFrame = {
     'phones': [
-      {'_sd': ['number']},
-      {'_sd': ['number']}
-    ]
+      {
+        '_sd': ['number'],
+      },
+      {
+        '_sd': ['number'],
+      },
+    ],
   };
 
   // Create issuer's private key for signing
@@ -34,5 +38,4 @@ void createArrayElemSdJwt() {
   );
 
   print("SD-JWT with array disclosures: ${sdJwt.serialized}");
-
 }

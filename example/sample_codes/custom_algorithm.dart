@@ -16,8 +16,10 @@ class MyCustomSigner implements Signer {
 
   @override
   Uint8List sign(Uint8List input) {
-    final sig =
-        _privateKey._key.sign(input, algorithm: _privateKey.algIanaName());
+    final sig = _privateKey._key.sign(
+      input,
+      algorithm: _privateKey.algIanaName(),
+    );
     return Uint8List.fromList(sig);
   }
 
@@ -26,7 +28,6 @@ class MyCustomSigner implements Signer {
 }
 
 void createSdJwt() {
-
   // Create the SD-JWT handler and signer
   final handler = SdJwtHandlerV1();
   final customSigner = MyCustomSigner(issuerPrivateKeyInCustomFormat);

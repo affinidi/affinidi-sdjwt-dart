@@ -1,14 +1,13 @@
 import 'package:sdjwt/sdjwt.dart';
 
 void createNestedSdJwt() {
-
   final claims = {
     'address': {
       'street': '123 Main St',
       'city': 'Anytown',
       'state': 'CA',
       'postal_code': '12345',
-      'country': 'US'
+      'country': 'US',
     },
     'email': 'john.doe@example.com',
   };
@@ -17,8 +16,8 @@ void createNestedSdJwt() {
   final disclosureFrame = {
     '_sd': ['email'],
     'address': {
-      '_sd': ['street', 'postal_code']
-    }
+      '_sd': ['street', 'postal_code'],
+    },
   };
 
   // Create issuer's private key for signing
@@ -38,5 +37,4 @@ void createNestedSdJwt() {
   );
 
   print("SD-JWT with nested disclosures: ${sdJwt.serialized}");
-
 }

@@ -10,13 +10,13 @@ void createSdJwt() {
     'address': {
       'street_address': '123 Main St',
       'locality': 'Anytown',
-      'country': 'US'
+      'country': 'US',
     },
   };
 
   // Define which claims should be selectively disclosable
   final disclosureFrame = {
-    '_sd': ['given_name', 'email', 'birthdate']
+    '_sd': ['given_name', 'email', 'birthdate'],
   };
 
   // Create issuer's private key for signing
