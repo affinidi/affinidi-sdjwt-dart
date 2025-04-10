@@ -1,5 +1,5 @@
 name: sdjwt
-version: 1.0.0
+version: 1.0.0-dev.2
 description: A Dart SDK for working with Selective Disclosure JSON Web Tokens (SD-JWT) following the SD-JWT specification.
 repository: https://github.com/affinidi/affinidi-sdjwt-dart
 issue_tracker: https://github.com/affinidi/affinidi-sdjwt-dart/issues
