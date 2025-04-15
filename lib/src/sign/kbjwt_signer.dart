@@ -49,6 +49,10 @@ class KbJwtSigner with JwtSigner {
   /// Generator for secure nonces.
   final _b64nonceGenerator = Base64NonceGenerator();
 
+  /// Creates a Key Binding from [input] and returns a result of type [SdJwt].
+  ///
+  /// Parameters:
+  /// - **[input]**: The input data required to perform the action.
   Future<SdJwt> execute(KbJwtSignerInput input) async {
     _validator.execute(input);
 

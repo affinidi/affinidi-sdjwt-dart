@@ -48,6 +48,10 @@ class SdJwtSigner with JwtSigner {
   /// Extractor for confirmation claims, not intended for direct use
   final _cnfExtractor = CnfExtractor();
 
+  /// Signs the given [input] and returns a result of type [SdJwt].
+  ///
+  /// Parameters:
+  /// - **[input]**: The input data required to perform the action.
   Future<SdJwt> execute(SdJwtSignerInput input) async {
     if (input.claims.isEmpty) {
       throw ArgumentError('`claims` cannot be empty');
