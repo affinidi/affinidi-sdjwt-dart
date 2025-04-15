@@ -43,13 +43,12 @@ class SdJwtSignerInput {
 ///
 /// This class implements the logic for creating SD-JWTs with selectively
 /// disclosable claims according to the SD-JWT specification.
-class SdJwtSigner extends Action<SdJwtSignerInput, SdJwt> with JwtSigner {
+class SdJwtSigner with JwtSigner {
   /// @internal
   /// Extractor for confirmation claims, not intended for direct use
   final _cnfExtractor = CnfExtractor();
 
-  @override
-  SdJwt execute(SdJwtSignerInput input) {
+  Future<SdJwt> execute(SdJwtSignerInput input) async {
     if (input.claims.isEmpty) {
       throw ArgumentError('`claims` cannot be empty');
     }
@@ -63,7 +62,7 @@ class SdJwtSigner extends Action<SdJwtSignerInput, SdJwt> with JwtSigner {
       sdClaims['cnf'] = _cnfExtractor.execute(input.holderPublicKey!);
     }
 
-    final String token = generateSignedCompactJwt(
+    final String token = await generateSignedCompactJwt(
         signer: input.signer,
         claims: sdClaims,
         protectedHeaders: {'typ': input.typ});

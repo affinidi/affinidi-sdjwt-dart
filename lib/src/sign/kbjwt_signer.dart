@@ -39,7 +39,7 @@ class KbJwtSignerInput {
 ///
 /// This class implements the logic for creating KB-JWTs that bind
 /// an SD-JWT to a specific holder key, preventing unauthorized presentations.
-class KbJwtSigner extends Action<KbJwtSignerInput, SdJwt> with JwtSigner {
+class KbJwtSigner with JwtSigner {
   /// Validator for the KB-JWT signer input.
   final _validator = AsyncKbJwtSignerInputValidator();
 
@@ -49,8 +49,7 @@ class KbJwtSigner extends Action<KbJwtSignerInput, SdJwt> with JwtSigner {
   /// Generator for secure nonces.
   final _b64nonceGenerator = Base64NonceGenerator();
 
-  @override
-  SdJwt execute(KbJwtSignerInput input) {
+  Future<SdJwt> execute(KbJwtSignerInput input) async {
     _validator.execute(input);
 
     final sdJwt = input.sdJwtToken;
@@ -65,7 +64,7 @@ class KbJwtSigner extends Action<KbJwtSignerInput, SdJwt> with JwtSigner {
       'sd_hash': sdHash
     };
 
-    final String kbJwt = generateSignedCompactJwt(
+    final String kbJwt = await generateSignedCompactJwt(
         signer: input.signer,
         claims: claims,
         protectedHeaders: {'typ': 'kb+jwt'});

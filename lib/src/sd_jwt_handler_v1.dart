@@ -10,13 +10,13 @@ import 'package:sdjwt/src/models/sdjwt.dart';
 /// Selective Disclosure JWTs according to the SD-JWT specification.
 class SdJwtHandlerV1 implements SdJwtHandler {
   @override
-  SdJwt sign({
+  Future<SdJwt> sign({
     required Map<String, dynamic> claims,
     required Map<String, dynamic> disclosureFrame,
     required Signer signer,
     Hasher<String, String>? hasher,
     SdPublicKey? holderPublicKey,
-  }) {
+  }) async {
     final input = SdJwtSignerInput(
         claims: claims,
         disclosureFrame: disclosureFrame,
@@ -59,10 +59,10 @@ class SdJwtHandlerV1 implements SdJwtHandler {
   }
 
   @override
-  SdJwt present(
+  Future<SdJwt> present(
       {required SdJwt sdJwt,
       required Set<Disclosure> disclosuresToKeep,
-      PresentWithKbJwtInput? presentWithKbJwtInput}) {
+      PresentWithKbJwtInput? presentWithKbJwtInput}) async {
     if (presentWithKbJwtInput != null) {
       final input = KbJwtSignerInput(
           sdJwtToken: sdJwt,

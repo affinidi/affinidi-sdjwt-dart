@@ -27,7 +27,7 @@ Future<Map<String, String>> signSdJwt({
   final handler = SdJwtHandlerV1();
 
   // Sign claims with selective disclosure
-  final sdJwtResult = handler.sign(
+  final sdJwtResult = await handler.sign(
     claims: claims,
     disclosureFrame: {
       "_sd": selectedDisclosures.keys

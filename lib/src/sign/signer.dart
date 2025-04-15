@@ -10,7 +10,7 @@ abstract interface class Signer {
   /// - **[input]**: The bytes to be signed
   ///
   /// Returns the signature bytes.
-  Uint8List sign(Uint8List input);
+  Future<Uint8List> sign(Uint8List input);
 
   /// Returns the IANA algorithm name to be included in the JWT header.
   String get algIanaName;

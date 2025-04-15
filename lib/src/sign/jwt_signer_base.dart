@@ -19,11 +19,11 @@ mixin JwtSigner {
   /// - **[protectedHeaders]**: The headers to include in the signed JWT.
   ///
   /// Returns a compact serialized JWT string.
-  String generateSignedCompactJwt({
+  Future<String> generateSignedCompactJwt({
     required Signer signer,
     required Map<String, dynamic> claims,
     Map<String, dynamic> protectedHeaders = const {},
-  }) {
+  }) async {
     final headers = <String, dynamic>{'alg': signer.algIanaName};
 
     if (signer.keyId != null) {
@@ -37,7 +37,7 @@ mixin JwtSigner {
 
     final signInput = utf8.encode('$encodedHeader.$encodedPayload');
 
-    final signature = signer.sign(signInput);
+    final signature = await signer.sign(signInput);
     final encodedSignature = base64UrlEncode(signature);
 
     return '$encodedHeader.$encodedPayload.$encodedSignature';

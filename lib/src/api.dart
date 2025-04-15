@@ -67,7 +67,7 @@ abstract class SdJwtHandler {
   ///   signer: signer,
   /// );
   /// ```
-  SdJwt sign({
+  Future<SdJwt> sign({
     required Map<String, dynamic> claims,
     required Map<String, dynamic> disclosureFrame,
     required Signer signer,
@@ -118,7 +118,7 @@ abstract class SdJwtHandler {
   ///   ),
   /// );
   /// ```
-  SdJwt present(
+  Future<SdJwt> present(
       {required SdJwt sdJwt,
       required Set<Disclosure> disclosuresToKeep,
       PresentWithKbJwtInput? presentWithKbJwtInput});
