@@ -1,6 +1,8 @@
 import 'package:sdjwt/sdjwt.dart';
 
-void presentSdJwt(String serializedSdJwt) {
+import 'consts.dart';
+
+void main() async {
   // Parse the original SD-JWT without verification
   final handler = SdJwtHandlerV1();
   final sdJwt = handler.unverifiedDecode(sdJwtToken: serializedSdJwt);
@@ -11,7 +13,7 @@ void presentSdJwt(String serializedSdJwt) {
       .toSet();
 
   // Create a presentation with only selected disclosures
-  final presentation = handler.present(
+  final presentation = await handler.present(
     sdJwt: sdJwt,
     disclosuresToKeep: disclosuresToKeep,
   );

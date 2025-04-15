@@ -1,13 +1,15 @@
 import 'package:sdjwt/sdjwt.dart';
 
-void workWithExternalSdJwt(String receivedSdJwtString) {
+import 'consts.dart';
+
+void main() async {
   final handler = SdJwtHandlerV1();
 
   // Option 1: Decode without verification
   // Use this when you need to examine the contents without verifying the signature
   // For example, when you want to see what disclosures are available
   final decodedOnly = handler.unverifiedDecode(
-    sdJwtToken: receivedSdJwtString,
+    sdJwtToken: serializedSdJwt,
     // Optional: provide a custom hasher if the SD-JWT uses a non-standard hashing algorithm
     // customHasher: myCustomHasher,
   );
@@ -26,7 +28,7 @@ void workWithExternalSdJwt(String receivedSdJwtString) {
     final verifier = SDKeyVerifier(issuerPublicKey);
 
     final verifiedResult = handler.decodeAndVerify(
-      sdJwtToken: receivedSdJwtString,
+      sdJwtToken: serializedSdJwt,
       verifier: verifier,
       // Optional: verify the key binding JWT if present
       verifyKeyBinding: true,

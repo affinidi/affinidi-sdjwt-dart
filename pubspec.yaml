@@ -35,5 +35,6 @@ false_secrets:
   - test/resources/*.pem
   - example/lib/consts.dart
   - example/sample_app/lib/consts.dart
+  - example/code_snippets/consts.dart
   - test/data/key_pairs.json
   - README.md

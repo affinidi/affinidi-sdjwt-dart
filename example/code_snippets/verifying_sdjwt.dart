@@ -1,6 +1,8 @@
 import 'package:sdjwt/sdjwt.dart';
 
-void verifySdJwt(String serializedSdJwt) {
+import 'consts.dart';
+
+void main() async {
   // Create verifier with issuer's public key
   final publicKey = SdPublicKey(
     publicKeyPem, // Issuer's public key in PEM format

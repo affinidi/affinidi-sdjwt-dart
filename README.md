@@ -112,7 +112,7 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
   };
 
   // Sign the claims to produce the SD-JWT
-  final SdJwt sdJwt = handler.sign(
+  final SdJwt sdJwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: SDKeySigner(issuerPrivateKey),
