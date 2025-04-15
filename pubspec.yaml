@@ -32,6 +32,8 @@ dev_dependencies:
   melos: ^6.3.2
 
 false_secrets:
-  - /test/resources/*.pem
+  - test/resources/*.pem
   - example/lib/consts.dart
+  - example/sample_app/lib/consts.dart
   - test/data/key_pairs.json
+  - README.md
