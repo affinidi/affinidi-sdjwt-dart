@@ -94,7 +94,7 @@ void main() async {
   };
 
   // Create the SD-JWT
-  final sdJwt = handler.sign(
+  final sdJwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: SDKeySigner(issuerPrivateKey),
