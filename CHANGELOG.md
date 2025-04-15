@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-04-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`sdjwt` - `v1.0.0-dev.3`](#sdjwt---v100-dev3)
+
+---
+
+#### `sdjwt` - `v1.0.0-dev.3`
+
+ - **FEAT**: Make signer async (#5).
+
+## 1.0.0-dev.3
+
+ - **FEAT**: Make signer async (#5).
+
+
 ## 2025-04-08
 
 ### Changes
