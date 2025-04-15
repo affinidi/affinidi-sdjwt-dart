@@ -79,37 +79,55 @@ After successfully installing the package, import it into your Dart code.
 import 'package:sdjwt/sdjwt.dart';
 
 void main() async {
-  // 1. Create SD-JWT with selective disclosures
-  final handler = SdJwtHandlerV1();
+  // ⚠️ CAUTION: The following keys are for quickstart and testing purposes only.
+  // These keys are publicly exposed and MUST NOT be used in any production or real project.
+  // Always generate and use your own secure keys for real-world use.
+  final issuerPrivateKey = SdPrivateKey("""
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgRfYYQILHnIkhWOz2
+gUl+dfvtkTQDx9OEJaqvKgZaIDuhRANCAATJZsFS61jqyM1ST6riibMlnnA5sTbv
+5L1uGdTg7vBADB6xz9AnEMyHnWolqtqXD5n63dw7uDWC1E7jlqzVUOq1
+-----END PRIVATE KEY-----
+""", SdJwtSignAlgorithm.es256k);
 
-  final claims = {
+  final issuerPublicKey = SdPublicKey("""
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
+7+S9bhnU4O7wQAwesc/QJxDMh51qJaralw+Z+t3cO7g1gtRO45as1VDqtQ==
+-----END PUBLIC KEY-----
+""", SdJwtSignAlgorithm.es256k);
+
+  // 1. Create SD-JWT with selective disclosures
+  final SdJwtHandlerV1 handler = SdJwtHandlerV1();
+
+  final Map<String, String> claims = {
     'given_name': 'Alice',
     'family_name': 'Smith',
     'email': 'alice@example.com',
   };
 
-  // Mark which claims should be selectively disclosable
+  // Specify which claims should be selectively disclosable
   final disclosureFrame = {
-    '_sd': ['given_name', 'email']
+    '_sd': ['given_name', 'email'],
   };
 
-  // Create the SD-JWT
-  final sdJwt = handler.sign(
+  // Sign the claims to produce the SD-JWT
+  final SdJwt sdJwt = handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: SDKeySigner(issuerPrivateKey),
   );
 
-  print("SD-JWT: ${sdJwt.serialized}");
+  print('SD-JWT: ${sdJwt.serialized}');
 
-  // 2. Verify the SD-JWT
-  final verified = handler.decodeAndVerify(
+  // 2. Decode and verify the SD-JWT
+  final SdJwt verified = handler.decodeAndVerify(
     sdJwtToken: sdJwt.serialized,
     verifier: SDKeyVerifier(issuerPublicKey),
   );
 
-  print("Verified claims: ${verified.claims}");
-  // Output: {given_name: Alice, family_name: Smith, email: alice@example.com}
+  print('Verified claims: ${verified.claims}');
+  // Output: {family_name: Smith, given_name: Alice, email: alice@example.com}
 }
 ```
 
@@ -117,7 +135,7 @@ For more sample usage, go to the [example folder](https://github.com/affinidi/af
 
 ## API Reference
 
-For the available operations, go to the [API reference page](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/docs/api_reference.md).
+For the available operations, go to the [API reference page](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/doc/api_reference.md).
 
 ## Support & feedback
 

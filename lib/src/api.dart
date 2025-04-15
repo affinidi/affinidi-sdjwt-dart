@@ -44,6 +44,7 @@ abstract class SdJwtHandler {
   /// disclosure digests in base64 format.
   /// - **[holderPublicKey]** (optional) : The public key of the holder used in case
   ///  of key binding singing.
+  ///
   /// Returns:
   /// - A typed signed sd-jwt with the disclosures.
   ///
