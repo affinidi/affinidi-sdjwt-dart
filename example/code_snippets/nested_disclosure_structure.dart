@@ -1,6 +1,8 @@
 import 'package:sdjwt/sdjwt.dart';
 
-void createNestedSdJwt() {
+import 'consts.dart';
+
+void main() async {
   final claims = {
     'address': {
       'street': '123 Main St',
@@ -30,7 +32,7 @@ void createNestedSdJwt() {
   final handler = SdJwtHandlerV1();
   final signer = SDKeySigner(issuerPrivateKey);
 
-  final sdJwt = handler.sign(
+  final sdJwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: signer,

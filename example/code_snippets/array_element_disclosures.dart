@@ -1,6 +1,8 @@
 import 'package:sdjwt/sdjwt.dart';
 
-void createArrayElemSdJwt() {
+import 'consts.dart';
+
+void main() async {
   // Array Element Disclosures
   final claims = {
     'phones': [
@@ -11,14 +13,14 @@ void createArrayElemSdJwt() {
 
   // Make the phone numbers selectively disclosable while keeping types visible
   final disclosureFrame = {
-    'phones': [
-      {
+    'phones': {
+      '0': {
         '_sd': ['number'],
       },
-      {
+      '1': {
         '_sd': ['number'],
       },
-    ],
+    },
   };
 
   // Create issuer's private key for signing
@@ -31,7 +33,7 @@ void createArrayElemSdJwt() {
   final handler = SdJwtHandlerV1();
   final signer = SDKeySigner(issuerPrivateKey);
 
-  final sdJwt = handler.sign(
+  final sdJwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: signer,

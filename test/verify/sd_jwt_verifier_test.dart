@@ -58,7 +58,7 @@ void main() {
           hasher: Base64EncodedOutputHasher.base64Sha256,
         );
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -95,7 +95,7 @@ void main() {
           hasher: Base64EncodedOutputHasher.base64Sha256,
         );
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -133,7 +133,7 @@ void main() {
             hasher: hasher,
           );
 
-          final sdjwt = sdSigner.execute(signerInput);
+          final sdjwt = await sdSigner.execute(signerInput);
           final serialized = '${[
             sdjwt.jwsString,
             ...sdjwt.disclosures.map((e) => e.serialized)
@@ -171,7 +171,7 @@ void main() {
           holderPublicKey: holderSdKey,
         );
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -207,7 +207,7 @@ void main() {
           hasher: Base64EncodedOutputHasher.base64Sha256,
           holderPublicKey: holderSdKey,
         );
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -242,7 +242,7 @@ void main() {
           hasher: Base64EncodedOutputHasher.base64Sha256,
         );
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -268,7 +268,7 @@ void main() {
           hasher: Base64EncodedOutputHasher.base64Sha256,
         );
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -296,7 +296,7 @@ void main() {
             signer: signer,
             hasher: Base64EncodedOutputHasher.base64Sha256);
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)
@@ -331,7 +331,7 @@ void main() {
           holderPublicKey: holderSdKey,
         );
 
-        final sdjwt = sdSigner.execute(signerInput);
+        final sdjwt = await sdSigner.execute(signerInput);
         final serialized = '${[
           sdjwt.jwsString,
           ...sdjwt.disclosures.map((e) => e.serialized)

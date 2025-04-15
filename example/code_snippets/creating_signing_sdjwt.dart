@@ -1,6 +1,8 @@
 import 'package:sdjwt/sdjwt.dart';
 
-void createSdJwt() {
+import 'consts.dart';
+
+void main() async {
   // Create the claims to be included in the SD-JWT
   final claims = {
     'given_name': 'Alice',
@@ -30,7 +32,7 @@ void createSdJwt() {
   final signer = SDKeySigner(issuerPrivateKey);
 
   // Sign the SD-JWT
-  final sdJwt = handler.sign(
+  final sdJwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: signer,

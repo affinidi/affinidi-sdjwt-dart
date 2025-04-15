@@ -31,7 +31,7 @@ void main() {
         'last_name': 'Bow'
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims, disclosureFrame: disclosureFrame, signer: signer);
 
       final publicKeyFile =
@@ -81,7 +81,7 @@ void main() {
       final disclosureFrame = {
         "_sd": ["first_name"]
       };
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims, disclosureFrame: disclosureFrame, signer: signer);
 
       final publicKeyFile =
@@ -132,7 +132,7 @@ void main() {
         "_sd": ["first_name"],
         "_sd_decoy": 3
       };
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims, disclosureFrame: disclosureFrame, signer: signer);
 
       final publicKeyFile =
@@ -189,7 +189,7 @@ void main() {
       final disclosureFrame = {
         "_sd": ["first_name"]
       };
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims,
           disclosureFrame: disclosureFrame,
           signer: signer,
@@ -320,7 +320,7 @@ void main() {
         "_sd": ["first_name", "email"]
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -382,7 +382,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -471,7 +471,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -537,7 +537,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -596,7 +596,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -668,7 +668,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -727,7 +727,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
         claims: claims,
         disclosureFrame: disclosureFrame,
         signer: signer,
@@ -781,7 +781,7 @@ void main() {
         'last_name': 'Bow'
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims, disclosureFrame: disclosureFrame, signer: signer);
 
       final publicKeyFile =
@@ -838,7 +838,7 @@ void main() {
       final disclosureFrame = {
         "_sd": ["first_name"]
       };
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims,
           disclosureFrame: disclosureFrame,
           signer: signer,
@@ -910,7 +910,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims, disclosureFrame: disclosureFrame, signer: signer);
 
       // Split the JWT
@@ -968,7 +968,7 @@ void main() {
         }
       };
 
-      final sdjwt = handler.sign(
+      final sdjwt = await handler.sign(
           claims: claims, disclosureFrame: disclosureFrame, signer: signer);
 
       // Split the JWT
@@ -1023,7 +1023,7 @@ void main() {
       };
 
       // First, test that we can create a signed SD-JWT
-      final sdJwt = handler.sign(
+      final sdJwt = await handler.sign(
           claims: claims,
           disclosureFrame: disclosureFrame,
           signer: signer,
@@ -1035,7 +1035,7 @@ void main() {
       final disclosuresToKeep = sdJwt.disclosures;
 
       try {
-        final sdJwtWithKeyBinding = handler.present(
+        final sdJwtWithKeyBinding = await handler.present(
             sdJwt: sdJwt,
             disclosuresToKeep: disclosuresToKeep,
             presentWithKbJwtInput: PresentWithKbJwtInput(

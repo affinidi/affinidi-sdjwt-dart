@@ -62,7 +62,7 @@ void main() {
 
       final handler = SdJwtHandlerV1();
 
-      final sdJwt = handler.sign(
+      final sdJwt = await handler.sign(
         claims: claims,
         disclosureFrame: selectiveDisclosureClaims,
         signer: signer,
@@ -140,7 +140,7 @@ void main() {
 
       final handler = SdJwtHandlerV1();
 
-      final sdJwt = handler.sign(
+      final sdJwt = await handler.sign(
         claims: claims,
         disclosureFrame: selectiveDisclosureClaims,
         signer: signer,
@@ -185,7 +185,7 @@ void main() {
 
       final handler = SdJwtHandlerV1();
 
-      final sdJwt = handler.sign(
+      final sdJwt = await handler.sign(
         claims: claims,
         disclosureFrame: selectiveDisclosureClaims,
         signer: signer,
@@ -258,7 +258,7 @@ void main() {
       final handler = SdJwtHandlerV1();
 
       // Create the SD-JWT with holder binding
-      final sdJwt = handler.sign(
+      final sdJwt = await handler.sign(
         claims: claims,
         disclosureFrame: selectiveDisclosureClaims,
         signer: signer,
@@ -270,7 +270,7 @@ void main() {
       final holderSigner = SDKeySigner(holderPrivateKey);
 
       try {
-        final sdJwtWithKeyBinding = handler.present(
+        final sdJwtWithKeyBinding = await handler.present(
           sdJwt: sdJwt,
           disclosuresToKeep: disclosuresToKeep,
           presentWithKbJwtInput: PresentWithKbJwtInput(
@@ -330,7 +330,7 @@ void main() {
 
       final handler = SdJwtHandlerV1();
 
-      final sdJwt = handler.sign(
+      final sdJwt = await handler.sign(
         claims: claims,
         disclosureFrame: selectiveDisclosureClaims,
         signer: signer,

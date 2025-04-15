@@ -52,7 +52,7 @@ void main() {
           hasher: Base64EncodedOutputHasher.base64Sha256,
           signer: signer);
 
-      sdJwtWithoutCnf = sdSigner.execute(signerInput);
+      sdJwtWithoutCnf = await sdSigner.execute(signerInput);
 
       final SdJwtSignerInput signerInputWithCnf = SdJwtSignerInput(
           claims: Map<String, dynamic>.from(claims),
@@ -60,7 +60,7 @@ void main() {
           signer: signer,
           hasher: Base64EncodedOutputHasher.base64Sha256,
           holderPublicKey: holderPublicKey);
-      sdJwtWithCnf = sdSigner.execute(signerInputWithCnf);
+      sdJwtWithCnf = await sdSigner.execute(signerInputWithCnf);
 
       verifyAction = KbVerifyAction();
 
@@ -72,14 +72,14 @@ void main() {
       })!;
     });
 
-    String createMockJwt(Map<String, dynamic> payload) {
+    Future<String> createMockJwt(Map<String, dynamic> payload) async {
       final jwtSigner = SdJwtSigner();
-      return jwtSigner.generateSignedCompactJwt(
+      return await jwtSigner.generateSignedCompactJwt(
           signer: signer, claims: payload, protectedHeaders: {'typ': 'jwt'});
     }
 
     test('verify should delegate to verifyAction', () async {
-      final jwt = createMockJwt({
+      final jwt = await createMockJwt({
         'exp': DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/
             1000,
         'iat': DateTime.now().millisecondsSinceEpoch ~/ 1000,

@@ -192,7 +192,7 @@ class SDKeySigner implements Signer {
   SDKeySigner(this._privateKey, {this.keyId});
 
   @override
-  Uint8List sign(Uint8List input) {
+  Future<Uint8List> sign(Uint8List input) async {
     final sig =
         _privateKey._key.sign(input, algorithm: _privateKey.algIanaName());
     return Uint8List.fromList(sig);
