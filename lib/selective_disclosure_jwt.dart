@@ -14,10 +14,10 @@
 /// Example usage:
 /// ```dart
 /// // Create an SD-JWT handler
-/// final handler = selective_disclosure_jwtHandlerV1();
+/// final handler = SdJwtHandlerV1();
 ///
 /// // Sign claims with selective disclosure
-/// final selective_disclosure_jwt = await handler.sign(
+/// final sdJwt = await handler.sign(
 ///   claims: {"name": "Alice", "age": 25},
 ///   disclosureFrame: {"_sd": ["age"]},
 ///   issuerPrivateKey: privateKey,
@@ -25,7 +25,7 @@
 ///
 /// // Verify an SD-JWT
 /// final result = await handler.verify(
-///   selective_disclosure_jwt: selective_disclosure_jwtString,
+///   sdJwt: sdJwtString,
 ///   issuerKey: publicKey,
 /// );
 /// ```
@@ -34,11 +34,7 @@ library;
 // Core API
 export 'src/models/disclosure.dart';
 export 'src/models/disclosure_path.dart';
-export 'src/models/sdjwt.dart'
-    show
-        selective_disclosure_jwt,
-        selective_disclosure_jwtStatus,
-        disclosureSeparator;
+export 'src/models/sdjwt.dart' show SdJwt, SdJwtStatus, disclosureSeparator;
 export 'src/models/sdkey.dart';
 export 'src/sd_jwt_handler_v1.dart';
 export 'src/api.dart' show PresentWithKbJwtInput;
