@@ -17,17 +17,15 @@ The SD-JWT for Dart package enables:
 
 ## Table of Contents
 
-- [SD-JWT for Dart](#sd-jwt-for-dart)
-  - [Table of Contents](#table-of-contents)
-  - [Core Concepts](#core-concepts)
-  - [Supported Algorithms](#supported-algorithms)
-  - [Requirements](#requirements)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [API Reference](#api-reference)
-  - [Support \& feedback](#support--feedback)
-    - [Reporting technical issues](#reporting-technical-issues)
-  - [Contributing](#contributing)
+- [Core Concepts](#core-concepts)
+- [Supported Algorithms](#supported-algorithms)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Support \& feedback](#support--feedback)
+  - [Reporting technical issues](#reporting-technical-issues)
+- [Contributing](#contributing)
 
 ## Core Concepts
 
