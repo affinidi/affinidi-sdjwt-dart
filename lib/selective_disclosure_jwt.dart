@@ -34,7 +34,11 @@ library;
 // Core API
 export 'src/models/disclosure.dart';
 export 'src/models/disclosure_path.dart';
-export 'src/models/sdjwt.dart' show selective_disclosure_jwt, selective_disclosure_jwtStatus, disclosureSeparator;
+export 'src/models/sdjwt.dart'
+    show
+        selective_disclosure_jwt,
+        selective_disclosure_jwtStatus,
+        disclosureSeparator;
 export 'src/models/sdkey.dart';
 export 'src/sd_jwt_handler_v1.dart';
 export 'src/api.dart' show PresentWithKbJwtInput;
