@@ -13,7 +13,7 @@ The SD-JWT for Dart package enables:
 - **Key binding** to prevent unauthorized presentations.
 
 > **IMPORTANT:** 
-> This project does not collect or process personal data by default. However, when used as part of a broader system or application that handles personally identifiable information (PII), users are responsible for ensuring that any such use complies with applicable privacy laws and data protection obligations.
+> This project does not collect or process any personal data. However, when used as part of a broader system or application that handles personally identifiable information (PII), users are responsible for ensuring that any such use complies with applicable privacy laws and data protection obligations.
 
 ## Table of Contents
 
@@ -58,14 +58,20 @@ You can create your custom signer, hasher, and verifier to extend support for ot
 
 ## Installation
 
-Add the package into your `pubspec.yaml` file.
+Run:
+
+```bash
+dart pub add sdjwt
+```
+
+or manually, add the package into your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
   sdjwt: ^<version_number>
 ```
 
-Then, run the command below to install the package.
+and then run the command below to install the package:
 
 ```bash
 dart pub get
@@ -131,7 +137,7 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
 }
 ```
 
-For more sample usage, go to the [example folder](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/).
+For more examples, go to the [example folder](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/).
 
 ## API Reference
 
