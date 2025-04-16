@@ -1,8 +1,8 @@
 import 'package:jose_plus/jose.dart';
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/base/action.dart';
-import 'package:sdjwt/src/utils/kb_jwt/base64_digest_calculator.dart';
-import 'package:sdjwt/src/verify/jwt_verifier_base.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/base/action.dart';
+import 'package:selective_disclosure_jwt/src/utils/kb_jwt/base64_digest_calculator.dart';
+import 'package:selective_disclosure_jwt/src/verify/jwt_verifier_base.dart';
 
 /// Action class for verifying Key Binding JWTs (KB-JWTs).
 ///

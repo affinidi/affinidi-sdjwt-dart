@@ -1,4 +1,4 @@
-import '../../../sdjwt.dart';
+import '../../../selective_disclosure_jwt.dart';
 import '../../utils/stack.dart';
 import 'sd_key_processor.dart';
 

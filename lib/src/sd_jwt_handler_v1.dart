@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/api.dart';
-import 'package:sdjwt/src/models/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/api.dart';
+import 'package:selective_disclosure_jwt/src/models/sdjwt.dart';
 
 /// Implementation of the [SdJwtHandler] interface.
 ///

@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:jose_plus/jose.dart';
-import 'package:sdjwt/src/sign/signer.dart';
-import 'package:sdjwt/src/verify/verifier.dart';
+import 'package:selective_disclosure_jwt/src/sign/signer.dart';
+import 'package:selective_disclosure_jwt/src/verify/verifier.dart';
 
 /// Bundled Crypto Algorithms.
 enum SdJwtSignAlgorithm {

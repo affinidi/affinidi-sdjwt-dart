@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:sdjwt/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 
 class MyCustomSigner implements Signer {
   @override

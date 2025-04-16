@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:meta/meta.dart';
-import 'package:sdjwt/src/models/disclosure.dart';
+import 'package:selective_disclosure_jwt/src/models/disclosure.dart';
 
 import '../base/hasher.dart';
 

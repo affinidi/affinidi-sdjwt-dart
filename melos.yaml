@@ -1,4 +1,4 @@
-name: sdjwt
+name: selective_disclosure_jwt
 packages:
   - "./"
 ignore:

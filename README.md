@@ -19,10 +19,12 @@ The SD-JWT for Dart package enables:
 
 - [Core Concepts](#core-concepts)
 - [Supported Algorithms](#supported-algorithms)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Reference](#api-reference)
-- [Support & feedback](#support--feedback)
+- [Support \& feedback](#support--feedback)
+  - [Reporting technical issues](#reporting-technical-issues)
 - [Contributing](#contributing)
 
 ## Core Concepts
@@ -61,14 +63,14 @@ You can create your custom signer, hasher, and verifier to extend support for ot
 Run:
 
 ```bash
-dart pub add sdjwt
+dart pub add selective_disclosure_jwt
 ```
 
 or manually, add the package into your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  sdjwt: ^<version_number>
+  selective_disclosure_jwt: ^<version_number>
 ```
 
 and then run the command below to install the package:
@@ -82,7 +84,7 @@ dart pub get
 After successfully installing the package, import it into your Dart code.
 
 ```dart
-import 'package:sdjwt/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 
 void main() async {
   // ⚠️ CAUTION: The following keys are for quickstart and testing purposes only.

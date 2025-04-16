@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as path;
-import 'package:sdjwt/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 import 'package:test/test.dart';
 
 void main() {

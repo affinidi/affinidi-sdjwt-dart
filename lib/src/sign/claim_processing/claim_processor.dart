@@ -1,6 +1,6 @@
-import 'package:sdjwt/src/sign/claim_processing/sd_key_processor.dart';
+import 'package:selective_disclosure_jwt/src/sign/claim_processing/sd_key_processor.dart';
 
-import '../../../sdjwt.dart';
+import '../../../selective_disclosure_jwt.dart';
 import '../../base/action.dart';
 import '../../utils/stack.dart';
 import 'claim_processing_visitor.dart';

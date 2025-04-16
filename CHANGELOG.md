@@ -15,11 +15,11 @@ Packages with breaking changes:
 
 Packages with other changes:
 
- - [`sdjwt` - `v1.0.0-dev.4`](#sdjwt---v100-dev4)
+ - [`selective_disclosure_jwt` - `v1.0.0-dev.4`](#selective_disclosure_jwt---v100-dev4)
 
 ---
 
-#### `sdjwt` - `v1.0.0-dev.4`
+#### `selective_disclosure_jwt` - `v1.0.0-dev.4`
 
  - **FIX**: updates on installation, info alignments (#6).
 
@@ -40,11 +40,11 @@ Packages with breaking changes:
 
 Packages with other changes:
 
- - [`sdjwt` - `v1.0.0-dev.3`](#sdjwt---v100-dev3)
+ - [`selective_disclosure_jwt` - `v1.0.0-dev.3`](#selective_disclosure_jwt---v100-dev3)
 
 ---
 
-#### `sdjwt` - `v1.0.0-dev.3`
+#### `selective_disclosure_jwt` - `v1.0.0-dev.3`
 
  - **FEAT**: Make signer async (#5).
 
@@ -65,11 +65,11 @@ Packages with breaking changes:
 
 Packages with other changes:
 
- - [`sdjwt` - `v1.0.0-dev.2`](#sdjwt---v100-dev2)
+ - [`selective_disclosure_jwt` - `v1.0.0-dev.2`](#selective_disclosure_jwt---v100-dev2)
 
 ---
 
-#### `sdjwt` - `v1.0.0-dev.2`
+#### `selective_disclosure_jwt` - `v1.0.0-dev.2`
 
  - **FIX**: updated the package version to a pre-release (#2).
  - **FEAT**: prepare for publication (#1).

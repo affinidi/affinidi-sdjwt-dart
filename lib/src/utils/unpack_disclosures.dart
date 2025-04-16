@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:sdjwt/src/models/disclosure.dart';
-import 'package:sdjwt/src/models/disclosure_map.dart';
-import 'package:sdjwt/src/models/disclosure_path.dart';
+import 'package:selective_disclosure_jwt/src/models/disclosure.dart';
+import 'package:selective_disclosure_jwt/src/models/disclosure_map.dart';
+import 'package:selective_disclosure_jwt/src/models/disclosure_path.dart';
 
 import '../base/hasher.dart';
 

@@ -1,4 +1,4 @@
 import 'package:mocktail/mocktail.dart';
-import 'package:sdjwt/src/api.dart';
+import 'package:selective_disclosure_jwt/src/api.dart';
 
 class MockSdJwtHandler extends Mock implements SdJwtHandler {}

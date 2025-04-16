@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:jose_plus/jose.dart';
-import 'package:sdjwt/src/verify/verifier.dart';
-import 'package:sdjwt/src/utils/common.dart';
+import 'package:selective_disclosure_jwt/src/verify/verifier.dart';
+import 'package:selective_disclosure_jwt/src/utils/common.dart';
 
 /// A mixin that provides common JWT verification functionality.
 ///

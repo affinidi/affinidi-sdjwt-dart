@@ -1,4 +1,4 @@
-import 'package:sdjwt/src/base/hasher.dart';
+import 'package:selective_disclosure_jwt/src/base/hasher.dart';
 import 'package:test/test.dart';
 
 void main() {
