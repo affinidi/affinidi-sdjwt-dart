@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:sdjwt/src/base/hasher.dart';
-import 'package:sdjwt/src/models/disclosure.dart';
+import 'package:selective_disclosure_jwt/src/base/hasher.dart';
+import 'package:selective_disclosure_jwt/src/models/disclosure.dart';
 import 'package:test/test.dart';
 
 void main() {

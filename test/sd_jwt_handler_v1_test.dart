@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:jose_plus/jose.dart';
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/utils/common.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/utils/common.dart';
 import 'package:test/test.dart';
 
 void main() {

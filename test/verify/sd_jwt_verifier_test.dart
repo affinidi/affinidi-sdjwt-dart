@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/models/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/models/sdjwt.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:sdjwt/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 
 String formatSdJwt(String jwt) {
   if (jwt.isEmpty) return jwt;

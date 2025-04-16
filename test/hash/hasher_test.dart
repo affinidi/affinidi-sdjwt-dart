@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
-import 'package:sdjwt/src/base/hasher.dart';
+import 'package:selective_disclosure_jwt/src/base/hasher.dart';
 import 'package:test/test.dart';
 
 void main() {

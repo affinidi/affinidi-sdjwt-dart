@@ -1,8 +1,8 @@
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/sign/claim_processing/claim_processing_visitor.dart';
-import 'package:sdjwt/src/sign/claim_processing/sd_key_processor.dart';
-import 'package:sdjwt/src/utils/common.dart';
-import 'package:sdjwt/src/utils/stack.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/sign/claim_processing/claim_processing_visitor.dart';
+import 'package:selective_disclosure_jwt/src/sign/claim_processing/sd_key_processor.dart';
+import 'package:selective_disclosure_jwt/src/utils/common.dart';
+import 'package:selective_disclosure_jwt/src/utils/stack.dart';
 import 'package:test/test.dart';
 
 void main() {

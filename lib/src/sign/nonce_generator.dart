@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:sdjwt/src/base/generator.dart';
+import 'package:selective_disclosure_jwt/src/base/generator.dart';
 
 /// A generator that produces secure random Base64Url-encoded nonce strings.
 ///

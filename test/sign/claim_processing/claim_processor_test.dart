@@ -1,6 +1,6 @@
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/sign/claim_processing/claim_processor.dart';
-import 'package:sdjwt/src/utils/common.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/sign/claim_processing/claim_processor.dart';
+import 'package:selective_disclosure_jwt/src/utils/common.dart';
 import 'package:test/test.dart';
 
 void main() {

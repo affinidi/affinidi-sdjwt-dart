@@ -1,5 +1,5 @@
-import 'package:sdjwt/src/base/action.dart';
-import 'package:sdjwt/src/models/sdjwt.dart';
+import 'package:selective_disclosure_jwt/src/base/action.dart';
+import 'package:selective_disclosure_jwt/src/models/sdjwt.dart';
 
 /// Calculator for creating base64-encoded digest for [SdJwt] .
 ///

@@ -1,4 +1,4 @@
-import '../../../sdjwt.dart';
+import '../../../selective_disclosure_jwt.dart';
 import '../../base/action.dart';
 import '../../utils/common.dart';
 import '../decoy_digest_generator.dart';

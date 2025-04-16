@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:sdjwt/src/models/sdjwt.dart';
+import 'package:selective_disclosure_jwt/src/models/sdjwt.dart';
 
 import '../base/action.dart';
 import '../utils/cnf_extractor.dart';

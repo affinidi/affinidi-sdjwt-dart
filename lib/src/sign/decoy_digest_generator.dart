@@ -1,4 +1,4 @@
-import 'package:sdjwt/src/base/action.dart';
+import 'package:selective_disclosure_jwt/src/base/action.dart';
 
 import '../base/hasher.dart';
 import 'nonce_generator.dart';

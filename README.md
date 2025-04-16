@@ -61,14 +61,14 @@ You can create your custom signer, hasher, and verifier to extend support for ot
 Run:
 
 ```bash
-dart pub add sdjwt
+dart pub add selective_disclosure_jwt
 ```
 
 or manually, add the package into your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  sdjwt: ^<version_number>
+  selective_disclosure_jwt: ^<version_number>
 ```
 
 and then run the command below to install the package:
@@ -82,7 +82,7 @@ dart pub get
 After successfully installing the package, import it into your Dart code.
 
 ```dart
-import 'package:sdjwt/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 
 void main() async {
   // ⚠️ CAUTION: The following keys are for quickstart and testing purposes only.
@@ -94,17 +94,17 @@ MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgRfYYQILHnIkhWOz2
 gUl+dfvtkTQDx9OEJaqvKgZaIDuhRANCAATJZsFS61jqyM1ST6riibMlnnA5sTbv
 5L1uGdTg7vBADB6xz9AnEMyHnWolqtqXD5n63dw7uDWC1E7jlqzVUOq1
 -----END PRIVATE KEY-----
-""", SdJwtSignAlgorithm.es256k);
+""", selective_disclosure_jwtSignAlgorithm.es256k);
 
   final issuerPublicKey = SdPublicKey("""
 -----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
 7+S9bhnU4O7wQAwesc/QJxDMh51qJaralw+Z+t3cO7g1gtRO45as1VDqtQ==
 -----END PUBLIC KEY-----
-""", SdJwtSignAlgorithm.es256k);
+""", selective_disclosure_jwtSignAlgorithm.es256k);
 
   // 1. Create SD-JWT with selective disclosures
-  final SdJwtHandlerV1 handler = SdJwtHandlerV1();
+  final selective_disclosure_jwtHandlerV1 handler = selective_disclosure_jwtHandlerV1();
 
   final Map<String, String> claims = {
     'given_name': 'Alice',
@@ -118,17 +118,17 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
   };
 
   // Sign the claims to produce the SD-JWT
-  final SdJwt sdJwt = await handler.sign(
+  final selective_disclosure_jwt selective_disclosure_jwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: SDKeySigner(issuerPrivateKey),
   );
 
-  print('SD-JWT: ${sdJwt.serialized}');
+  print('SD-JWT: ${selective_disclosure_jwt.serialized}');
 
   // 2. Decode and verify the SD-JWT
-  final SdJwt verified = handler.decodeAndVerify(
-    sdJwtToken: sdJwt.serialized,
+  final selective_disclosure_jwt verified = handler.decodeAndVerify(
+    selective_disclosure_jwtToken: selective_disclosure_jwt.serialized,
     verifier: SDKeyVerifier(issuerPublicKey),
   );
 
@@ -137,11 +137,11 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
 }
 ```
 
-For more examples, go to the [example folder](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/example/).
+For more examples, go to the [example folder](https://github.com/affinidi/affinidi-selective_disclosure_jwt-dart/tree/main/example/).
 
 ## API Reference
 
-For the available operations, go to the [API reference page](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/doc/api_reference.md).
+For the available operations, go to the [API reference page](https://github.com/affinidi/affinidi-selective_disclosure_jwt-dart/tree/main/doc/api_reference.md).
 
 ## Support & feedback
 
@@ -152,10 +152,10 @@ If you face any issues or have suggestions, please don't hesitate to contact us 
 If you have a technical issue with the Affinidi SD-JWT Dart's codebase, you can also create an issue directly in GitHub.
 
 1. Ensure the bug was not already reported by searching on GitHub under
-   [Issues](https://github.com/affinidi/affinidi-sdjwt-dart/issues).
+   [Issues](https://github.com/affinidi/affinidi-selective_disclosure_jwt-dart/issues).
 
 2. If you're unable to find an open issue addressing the problem,
-   [open a new one](https://github.com/affinidi/affinidi-sdjwt-dart/issues/new).
+   [open a new one](https://github.com/affinidi/affinidi-selective_disclosure_jwt-dart/issues/new).
    Be sure to include a **title and clear description**, as much relevant information as possible,
    and a **code sample** or an **executable test case** demonstrating the expected behaviour that is not occurring.
 
@@ -163,4 +163,4 @@ If you have a technical issue with the Affinidi SD-JWT Dart's codebase, you can 
 
 Want to contribute?
 
-Head over to our [CONTRIBUTING](https://github.com/affinidi/affinidi-sdjwt-dart/tree/main/CONTRIBUTING.md) guidelines.
+Head over to our [CONTRIBUTING](https://github.com/affinidi/affinidi-selective_disclosure_jwt-dart/tree/main/CONTRIBUTING.md) guidelines.

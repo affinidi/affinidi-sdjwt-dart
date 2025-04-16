@@ -1,6 +1,6 @@
 # Contributing to SD-JWT for Dart
 
-When contributing to this repository, please first discuss the change you wish to make by creating a new [GitHub issue](https://github.com/affinidi/affinidi-sdjwt-dart/issues/new).
+When contributing to this repository, please first discuss the change you wish to make by creating a new [GitHub issue](https://github.com/affinidi/affinidi-selective_disclosure_jwt-dart/issues/new).
 
 ## Requirements
 

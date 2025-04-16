@@ -1,5 +1,5 @@
-import 'package:sdjwt/sdjwt.dart';
-import 'package:sdjwt/src/sign/claim_processing/sd_key_processor.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
+import 'package:selective_disclosure_jwt/src/sign/claim_processing/sd_key_processor.dart';
 import 'package:test/test.dart';
 
 void main() {

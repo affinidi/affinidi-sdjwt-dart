@@ -1,4 +1,4 @@
-import 'package:sdjwt/src/verify/jwt_verifier_base.dart';
+import 'package:selective_disclosure_jwt/src/verify/jwt_verifier_base.dart';
 import 'package:test/test.dart';
 
 class TestJwtVerifier with JwtVerifier {}

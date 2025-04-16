@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, depend_on_referenced_packages
 
-import 'package:sdjwt/sdjwt.dart';
+import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 
 /// Represents the additional arguments needed to enable presenting the SdJwt with a signed KbJwt.
 interface class PresentWithKbJwtInput {

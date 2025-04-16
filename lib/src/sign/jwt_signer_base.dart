@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:sdjwt/src/sign/signer.dart';
-import 'package:sdjwt/src/utils/common.dart';
+import 'package:selective_disclosure_jwt/src/sign/signer.dart';
+import 'package:selective_disclosure_jwt/src/utils/common.dart';
 
 /// A mixin that provides common JWT signing functionality.
 ///

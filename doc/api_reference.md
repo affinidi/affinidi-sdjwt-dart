@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-- [SdJwtHandler](#sdjwthandler)
-- [SdJwt](#sdjwt)
+- [selective_disclosure_jwtHandler](#selective_disclosure_jwthandler)
+- [selective_disclosure_jwt](#selective_disclosure_jwt)
 - [Keys and Signing](#keys-and-signing)
 - [Verification](#verification)
 
-## SdJwtHandler
+## selective_disclosure_jwtHandler
 
 The main interface for SD-JWT operations:
 
@@ -17,7 +17,7 @@ The main interface for SD-JWT operations:
 - `decodeAndVerify()` - Decodes a serialized SD-JWT string and verifies it in one step. This is the recommended method for processing received SD-JWTs when you have the issuer's public key.
 - `unverifiedDecode()` - Decodes a serialized SD-JWT string without verifying the signature. Use this when you need to inspect an SD-JWT's contents before verification, such as when building UIs to display available disclosures.
 
-## SdJwt
+## selective_disclosure_jwt
 
 Represents a Selective Disclosure JWT:
 
@@ -37,7 +37,7 @@ Represents a Selective Disclosure JWT:
 - `SdPublicKey` - Represents a public key for verification
 - `SDKeySigner` - Implements signing using SD-JWT keys
 - `SDKeyVerifier` - Implements verification using SD-JWT keys
-- `SdJwtSignAlgorithm` - Supported signing algorithms:
+- `selective_disclosure_jwtSignAlgorithm` - Supported signing algorithms:
   - `es256` - ECDSA using P-256 curve and SHA-256
   - `es256k` - ECDSA using secp256k1 curve and SHA-256
   - `rs256` - RSASSA-PKCS1-v1_5 using SHA-256
@@ -46,6 +46,6 @@ Represents a Selective Disclosure JWT:
 
 ## Verification
 
-- `SdJwtVerifierOutput` - Contains the result of verification
+- `selective_disclosure_jwtVerifierOutput` - Contains the result of verification
   - `isVerified` - Whether the SD-JWT was successfully verified
   - `isKbJwtVerified` - Whether key binding JWT was verified
