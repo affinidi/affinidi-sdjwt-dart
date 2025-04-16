@@ -2,12 +2,10 @@
 
 ## Table of Contents
 
-- [API Reference](#api-reference)
-  - [Table of Contents](#table-of-contents)
-  - [SdJwtHandler](#sdjwthandler)
-  - [SdJwt](#sdjwt)
-  - [Keys and Signing](#keys-and-signing)
-  - [Verification](#verification)
+- [SdJwtHandler](#sdjwthandler)
+- [SdJwt](#sdjwt)
+- [Keys and Signing](#keys-and-signing)
+- [Verification](#verification)
 
 ## SdJwtHandler
 
