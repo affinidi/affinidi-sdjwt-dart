@@ -17,13 +17,17 @@ The SD-JWT for Dart package enables:
 
 ## Table of Contents
 
-- [Core Concepts](#core-concepts)
-- [Supported Algorithms](#supported-algorithms)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Reference](#api-reference)
-- [Support & feedback](#support--feedback)
-- [Contributing](#contributing)
+- [SD-JWT for Dart](#sd-jwt-for-dart)
+  - [Table of Contents](#table-of-contents)
+  - [Core Concepts](#core-concepts)
+  - [Supported Algorithms](#supported-algorithms)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [API Reference](#api-reference)
+  - [Support \& feedback](#support--feedback)
+    - [Reporting technical issues](#reporting-technical-issues)
+  - [Contributing](#contributing)
 
 ## Core Concepts
 
@@ -94,14 +98,14 @@ MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgRfYYQILHnIkhWOz2
 gUl+dfvtkTQDx9OEJaqvKgZaIDuhRANCAATJZsFS61jqyM1ST6riibMlnnA5sTbv
 5L1uGdTg7vBADB6xz9AnEMyHnWolqtqXD5n63dw7uDWC1E7jlqzVUOq1
 -----END PRIVATE KEY-----
-""", selective_disclosure_jwtSignAlgorithm.es256k);
+""", SdJwtSignAlgorithm.es256k);
 
   final issuerPublicKey = SdPublicKey("""
 -----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
 7+S9bhnU4O7wQAwesc/QJxDMh51qJaralw+Z+t3cO7g1gtRO45as1VDqtQ==
 -----END PUBLIC KEY-----
-""", selective_disclosure_jwtSignAlgorithm.es256k);
+""", SdJwtSignAlgorithm.es256k);
 
   // 1. Create SD-JWT with selective disclosures
   final selective_disclosure_jwtHandlerV1 handler = selective_disclosure_jwtHandlerV1();
@@ -118,7 +122,7 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
   };
 
   // Sign the claims to produce the SD-JWT
-  final selective_disclosure_jwt selective_disclosure_jwt = await handler.sign(
+  final SdJwt sdJwt = await handler.sign(
     claims: claims,
     disclosureFrame: disclosureFrame,
     signer: SDKeySigner(issuerPrivateKey),
@@ -127,8 +131,8 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
   print('SD-JWT: ${selective_disclosure_jwt.serialized}');
 
   // 2. Decode and verify the SD-JWT
-  final selective_disclosure_jwt verified = handler.decodeAndVerify(
-    selective_disclosure_jwtToken: selective_disclosure_jwt.serialized,
+  final SdJwt verified = handler.decodeAndVerify(
+    sdJwtToken: sdJwt.serialized,
     verifier: SDKeyVerifier(issuerPublicKey),
   );
 
