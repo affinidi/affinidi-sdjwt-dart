@@ -108,7 +108,7 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
 """, SdJwtSignAlgorithm.es256k);
 
   // 1. Create SD-JWT with selective disclosures
-  final selective_disclosure_jwtHandlerV1 handler = selective_disclosure_jwtHandlerV1();
+  final SdJwtHandlerV1 handler = selective_disclosure_jwtHandlerV1();
 
   final Map<String, String> claims = {
     'given_name': 'Alice',
@@ -128,7 +128,7 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEyWbBUutY6sjNUk+q4omzJZ5wObE2
     signer: SDKeySigner(issuerPrivateKey),
   );
 
-  print('SD-JWT: ${selective_disclosure_jwt.serialized}');
+  print('SD-JWT: ${sdJwt.serialized}');
 
   // 2. Decode and verify the SD-JWT
   final SdJwt verified = handler.decodeAndVerify(
