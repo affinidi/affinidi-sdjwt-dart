@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-05-12
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`selective_disclosure_jwt` - `v1.0.3`](#selective_disclosure_jwt---v103)
+
+---
+
+#### `selective_disclosure_jwt` - `v1.0.3`
+
+ - **FIX**: jose_plus and crypto_keys_plus upgraded (#10).
+
+## 1.0.3
+
+ - **FIX**: jose_plus and crypto_keys_plus upgraded (#10).
+
+
 ## 2025-05-06
 
 ### Changes

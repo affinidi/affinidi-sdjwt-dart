@@ -1,5 +1,5 @@
 name: selective_disclosure_jwt
-version: 1.0.2
+version: 1.0.3
 description: >-
   A Dart SDK for working with Selective Disclosure JSON Web Tokens
   (SD-JWT) following the SD-JWT specification.
