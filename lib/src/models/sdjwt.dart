@@ -169,7 +169,6 @@ class SdJwt {
   ///
   /// Parameters:
   /// - **[jwsToken]**: The serialized JWS to use as the base.
-  /// - **[header]**: The header for the JWS.
   /// - **[disclosures]**: The set of disclosures to include.
   /// - **[payload]**: The claims within the JWS.
   /// - **[hasher]**: The [Hasher] to be used.
@@ -177,11 +176,13 @@ class SdJwt {
   /// Returns a new [SdJwt] instance.
   factory SdJwt._fromParts({
     required String jwsToken,
-    required Map<String, dynamic> header,
     required Set<Disclosure> disclosures,
     required Map<String, dynamic> payload,
     required Hasher<String, String> hasher,
   }) {
+    final JWT decodedJws = JWT.decode(jwsToken);
+    final Map<String, dynamic> header = decodedJws.header!;
+
     final DisclosureMap disclosuresDigestIndex =
         DisclosureMap.from(disclosures);
 
@@ -229,7 +230,6 @@ class SdJwt {
 
     final derivedSdJwt = SdJwt._fromParts(
       jwsToken: jwsString,
-      header: header,
       disclosures: disclosuresToKeep,
       payload: payload,
       hasher: hasher,

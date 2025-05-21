@@ -100,8 +100,10 @@ void main() {
         'cnf': {'jwk': mockHolderKey}
       });
 
-      final result = verifyAction.execute(sdJwtWithCnf.withKbJwt(jwt));
-      expect(result, isFalse);
+      expect(
+          () => verifyAction.execute(sdJwtWithCnf.withKbJwt(jwt)),
+          throwsA(isA<Exception>().having((e) => e.toString(), 'message',
+              contains('SD Hash claim is missing'))));
     });
 
     test('verify should return false for invalid SD hash', () async {

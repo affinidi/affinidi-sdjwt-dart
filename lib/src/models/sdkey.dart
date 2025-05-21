@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
@@ -248,20 +247,7 @@ class SDKeySigner implements Signer {
     final key = _privateKey._key;
     final algorithm = _privateKey.alg._jwa;
 
-    final headerMap = <String, String>{'alg': _privateKey.alg.ianaName};
-    if (keyId != null) {
-      headerMap['kid'] = keyId!;
-    }
-
-    final jwsProtectedHeader = json.encode(headerMap);
-    final jwsProtectedHeaderB64Url =
-        base64Url.encode(utf8.encode(jwsProtectedHeader)).replaceAll('=', '');
-    final jwsPayloadB64Url = base64Url.encode(input).replaceAll('=', '');
-
-    final dataToSign =
-        utf8.encode('$jwsProtectedHeaderB64Url.$jwsPayloadB64Url');
-
-    return algorithm.sign(key, dataToSign);
+    return algorithm.sign(key, input);
   }
 
   @override
@@ -290,12 +276,8 @@ class SDKeyVerifier implements Verifier {
   bool verify(Uint8List data, Uint8List signature) {
     try {
       final key = _publicKey._key;
-      final tokenWithoutSignature = utf8.decode(data);
-      final String signatureBase64 =
-          base64Url.encode(signature).replaceAll('=', '');
-      final token = '$tokenWithoutSignature.$signatureBase64';
-      JWT.verify(token, key);
-      return true;
+      final algorithm = _publicKey.alg._jwa;
+      return algorithm.verify(key, data, signature);
     } catch (e) {
       return false;
     }
