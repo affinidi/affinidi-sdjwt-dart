@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:jose_plus/jose.dart';
-import 'package:selective_disclosure_jwt/src/verify/verifier.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:selective_disclosure_jwt/src/utils/common.dart';
+import 'package:selective_disclosure_jwt/src/verify/verifier.dart';
 
 /// A mixin that provides common JWT verification functionality.
 ///
@@ -25,24 +25,36 @@ mixin JwtVerifier {
     required String serialized,
     required Verifier verifier,
   }) {
-    final jws = JsonWebSignature.fromCompactSerialization(serialized);
+    final JWT decodedJwt;
+    try {
+      decodedJwt = JWT.decode(serialized);
+    } catch (e) {
+      throw Exception('Invalid JWT format: $e');
+    }
 
-    final header = jws.recipients.first.header;
-    final data = jws.data;
-    final signature = Uint8List.fromList(jws.recipients[0].data);
+    final headerJson = decodedJwt.header;
+    if (headerJson == null) {
+      throw Exception('JWT header is missing');
+    }
 
     // Verify that the algorithm is supported by the verifier.
-    final alg = header.algorithm;
+    final alg = headerJson['alg'] as String?;
     if (alg == null || !verifier.isAllowedAlgorithm(alg)) {
       throw Exception('JWT verification failed: Supported alg not found');
     }
 
-    final encodedPayload = base64UrlEncode(data);
-    final encodedHeader = base64UrlEncode(header);
+    final parts = serialized.split('.');
+    if (parts.length != 3) {
+      throw Exception('Invalid JWT format: expected 3 parts');
+    }
 
-    final signInput = utf8.encode('$encodedHeader.$encodedPayload');
+    final signInput = utf8.encode('${parts[0]}.${parts[1]}');
+    final signature = base64Url.decode(base64Url.normalize(parts[2]));
 
-    return verifier.verify(signInput, signature);
+    return verifier.verify(
+      Uint8List.fromList(signInput),
+      Uint8List.fromList(signature),
+    );
   }
 
   /// Verifies time-based claims in the JWT payload.

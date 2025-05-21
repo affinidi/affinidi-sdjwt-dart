@@ -351,5 +351,93 @@ void main() {
         expect(result.containsKey('cnf'), isTrue);
       });
     });
+
+    group('Ed25519 Tests', () {
+      setUp(() {
+        final privateKeyFile = File(
+          'test/resources/ed25519_sdjwt_test_private_key.pem',
+        );
+        final publicKeyFile = File(
+          'test/resources/ed25519_sdjwt_test_public_key.pem',
+        );
+
+        final privateKeyStr = privateKeyFile.readAsStringSync();
+        final publicKeyStr = publicKeyFile.readAsStringSync();
+
+        issuerPrivateKey =
+            SdPrivateKey(privateKeyStr, SdJwtSignAlgorithm.eddsa);
+        issuerPublicKey = SdPublicKey(publicKeyStr, SdJwtSignAlgorithm.eddsa);
+
+        signer = SDKeySigner(issuerPrivateKey);
+        verifier = SDKeyVerifier(issuerPublicKey);
+
+        sdVerifier = SdJwtVerifyAction();
+        sdSigner = SdJwtSigner();
+      });
+
+      test('should verify Ed25519 signed SD-JWT successfully', () async {
+        final SdJwtSignerInput signerInput = SdJwtSignerInput(
+            claims: Map<String, dynamic>.from(claims),
+            disclosureFrame: disclosureFrame,
+            signer: signer,
+            hasher: Base64EncodedOutputHasher.base64Sha256);
+
+        final sdjwt = await sdSigner.execute(signerInput);
+        final serialized = '${[
+          sdjwt.jwsString,
+          ...sdjwt.disclosures.map((e) => e.serialized)
+        ].join(disclosureSeparator)}~';
+
+        final verifiedSdJwt = sdVerifier.execute(SdJwtVerifierInput(
+          sdJwt: SdJwt.parse(serialized),
+          verifier: verifier,
+          config: emptyConfig,
+        ));
+
+        final result = verifiedSdJwt.claims;
+        expect(result['id'], equals('1234'));
+        expect(result['first_name'], equals('Rain'));
+        expect(result['last_name'], equals('Bow'));
+        expect(result.containsKey('_sd_alg'), isFalse);
+        expect(verifiedSdJwt.isVerified, isTrue);
+      });
+
+      test('should verify Ed25519 signed SD-JWT with key binding', () async {
+        final holderKeyFile = File(
+          'test/resources/ed25519_sdjwt_test_holder_public_key.pem',
+        );
+        final String holderKeyStr = holderKeyFile.readAsStringSync();
+        final SdPublicKey holderSdKey =
+            SdPublicKey(holderKeyStr, SdJwtSignAlgorithm.eddsa);
+
+        final signerInput = SdJwtSignerInput(
+          claims: Map<String, dynamic>.from(claims),
+          disclosureFrame: disclosureFrame,
+          signer: signer,
+          hasher: Base64EncodedOutputHasher.base64Sha256,
+          holderPublicKey: holderSdKey,
+        );
+
+        final sdjwt = await sdSigner.execute(signerInput);
+        final serialized = '${[
+          sdjwt.jwsString,
+          ...sdjwt.disclosures.map((e) => e.serialized)
+        ].join(disclosureSeparator)}~';
+
+        final verifiedSdJwt = sdVerifier.execute(SdJwtVerifierInput(
+          sdJwt: SdJwt.parse(serialized),
+          verifier: verifier,
+          config: emptyConfig,
+        ));
+
+        final result = verifiedSdJwt.claims;
+        expect(result['id'], equals('1234'));
+        expect(result['first_name'], equals('Rain'));
+        expect(result['last_name'], equals('Bow'));
+        expect(result.containsKey('_sd_alg'), isFalse);
+        expect(result.containsKey('cnf'), isTrue);
+        expect(verifiedSdJwt.isVerified, isTrue);
+      });
+    });
   });
 }

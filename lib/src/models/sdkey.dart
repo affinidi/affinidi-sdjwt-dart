@@ -1,43 +1,47 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:jose_plus/jose.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:selective_disclosure_jwt/src/sign/signer.dart';
 import 'package:selective_disclosure_jwt/src/verify/verifier.dart';
 
 /// Bundled Crypto Algorithms.
 enum SdJwtSignAlgorithm {
   /// HMAC using SHA-256.
-  hs256(JsonWebAlgorithm.hs256),
+  hs256(JWTAlgorithm.HS256),
 
   /// HMAC using SHA-384.
-  hs384(JsonWebAlgorithm.hs384),
+  hs384(JWTAlgorithm.HS384),
 
   /// HMAC using SHA-512.
-  hs512(JsonWebAlgorithm.hs512),
+  hs512(JWTAlgorithm.HS512),
 
   /// RSASSA-PKCS1-v1_5 using SHA-256.
-  rs256(JsonWebAlgorithm.rs256),
+  rs256(JWTAlgorithm.RS256),
 
   /// RSASSA-PKCS1-v1_5 using SHA-384.
-  rs384(JsonWebAlgorithm.rs384),
+  rs384(JWTAlgorithm.RS384),
 
   /// RSASSA-PKCS1-v1_5 using SHA-512.
-  rs512(JsonWebAlgorithm.rs512),
+  rs512(JWTAlgorithm.RS512),
 
   /// ECDSA using P-256 and SHA-256.
-  es256(JsonWebAlgorithm.es256),
+  es256(JWTAlgorithm.ES256),
 
   /// ECDSA using P-384 and SHA-384.
-  es384(JsonWebAlgorithm.es384),
+  es384(JWTAlgorithm.ES384),
 
   /// ECDSA using P-521 and SHA-512.
-  es512(JsonWebAlgorithm.es512),
+  es512(JWTAlgorithm.ES512),
 
   /// ECDSA using P-256 and SHA-256.
-  es256k(JsonWebAlgorithm.es256k);
+  es256k(JWTAlgorithm.ES256K),
+
+  /// EdDSA using Ed25519.
+  eddsa(JWTAlgorithm.EdDSA);
 
   /// A reference to the internally wrapped JWA instance.
-  final JsonWebAlgorithm _jwa;
+  final JWTAlgorithm _jwa;
 
   /// Create an enum entry of supported SdJwtAlgorithms.
   const SdJwtSignAlgorithm(this._jwa);
@@ -54,17 +58,25 @@ enum SdJwtSignAlgorithm {
   factory SdJwtSignAlgorithm.fromCurve(String curve) {
     final normalizedCurve = normalizeCurve(curve);
 
-    return SdJwtSignAlgorithm.values.firstWhere(
-      (jwa) => jwa._jwa.curve == normalizedCurve,
-      orElse: () => throw ArgumentError('Invalid algorithm: $curve'),
-    );
+    switch (normalizedCurve.toUpperCase()) {
+      case 'P-256':
+        return SdJwtSignAlgorithm.es256;
+      case 'P-384':
+        return SdJwtSignAlgorithm.es384;
+      case 'P-521':
+        return SdJwtSignAlgorithm.es512;
+      case 'SECP256K1':
+        return SdJwtSignAlgorithm.es256k;
+      default:
+        throw ArgumentError('Invalid curve: $curve');
+    }
   }
 
   /// Standardize the name of the elliptic curve from different variants to a single standards compliant name.
   static String normalizeCurve(String curve) {
     switch (curve.toUpperCase()) {
       case 'SECP256K1':
-        return SdJwtSignAlgorithm.es256k.curve ?? curve;
+        return 'secp256k1';
       default:
         return curve;
     }
@@ -85,7 +97,22 @@ enum SdJwtSignAlgorithm {
   String toString() => _jwa.name;
 
   /// Return the name of the curve used by the ECDSA based algorithm. Returns null for other algorithms.
-  String? get curve => _jwa.curve;
+  String? get curve {
+    switch (_jwa) {
+      case JWTAlgorithm.ES256:
+        return 'P-256';
+      case JWTAlgorithm.ES384:
+        return 'P-384';
+      case JWTAlgorithm.ES512:
+        return 'P-521';
+      case JWTAlgorithm.ES256K:
+        return 'secp256k1';
+      case JWTAlgorithm.EdDSA:
+        return 'Ed25519';
+      default:
+        return null;
+    }
+  }
 
   /// The string representation of The Internet Assigned Numbers Authority
   /// (IANA) name.
@@ -97,8 +124,8 @@ enum SdJwtSignAlgorithm {
 /// - `SdPrivateKey` (for signing).
 /// - `SdPublicKey` (for verification).
 abstract class SdKey {
-  /// The internally wrapped JWK.
-  final JsonWebKey _key;
+  /// The cryptographic key.
+  final JWTKey _key;
 
   /// the algorithm implemented by the given key.
   final SdJwtSignAlgorithm alg;
@@ -108,37 +135,55 @@ abstract class SdKey {
   /// Parameters:
   /// - **[keyData]**: The key data, either as a PEM string or a JWK map.
   /// - **[alg]**: The algorithm to use with this key.
-  SdKey(dynamic keyData, this.alg) : _key = _createJsonWebKey(keyData, alg);
+  SdKey(dynamic keyData, this.alg) : _key = _createKey(keyData, alg);
 
   /// Parses keyData from various supported formats
-  static JsonWebKey _createJsonWebKey(
+  static JWTKey _createKey(
     dynamic keyData,
     SdJwtSignAlgorithm alg,
   ) {
-    if (keyData is String) {
-      return _createJsonWebKeyFromPem(keyData, alg);
-    } else if (keyData is Map<String, dynamic>) {
-      return _createJsonWebKeyFromJWK(keyData, alg)!;
-    } else {
+    try {
+      if (keyData is String) {
+        switch (alg) {
+          case SdJwtSignAlgorithm.hs256:
+          case SdJwtSignAlgorithm.hs384:
+          case SdJwtSignAlgorithm.hs512:
+            return SecretKey(keyData);
+          case SdJwtSignAlgorithm.rs256:
+          case SdJwtSignAlgorithm.rs384:
+          case SdJwtSignAlgorithm.rs512:
+            if (keyData.contains('PRIVATE KEY')) {
+              return RSAPrivateKey(keyData);
+            } else {
+              return RSAPublicKey(keyData);
+            }
+          case SdJwtSignAlgorithm.es256:
+          case SdJwtSignAlgorithm.es384:
+          case SdJwtSignAlgorithm.es512:
+          case SdJwtSignAlgorithm.es256k:
+            if (keyData.contains('PRIVATE KEY')) {
+              return ECPrivateKey(keyData);
+            } else {
+              return ECPublicKey(keyData);
+            }
+          case SdJwtSignAlgorithm.eddsa:
+            if (keyData.contains('PRIVATE KEY')) {
+              return EdDSAPrivateKey.fromPEM(keyData);
+            } else {
+              return EdDSAPublicKey.fromPEM(keyData);
+            }
+        }
+      } else if (keyData is Map<String, dynamic>) {
+        return JWTKey.fromJWK(keyData);
+      } else {
+        throw ArgumentError(
+            'Invalid key data type. Expected String (PEM) or Map<String, dynamic> (JWK).');
+      }
+    } catch (e) {
       throw ArgumentError(
-          'Invalid key data type. Expected String or Map<String, dynamic>.');
+        'Failed to create key from provided data for alg ${alg.ianaName}: $e. Data: $keyData',
+      );
     }
-  }
-
-  /// Parses key data in PEM format
-  static JsonWebKey _createJsonWebKeyFromPem(
-    String pem,
-    SdJwtSignAlgorithm alg,
-  ) {
-    return JsonWebKey.fromPem(pem);
-  }
-
-  /// Parses key data in JWK format
-  static JsonWebKey? _createJsonWebKeyFromJWK(
-    Map<String, dynamic> jwk,
-    SdJwtSignAlgorithm alg,
-  ) {
-    return JsonWebKey.fromJson(jwk);
   }
 
   /// Gets the IANA name for the algorithm used with this key.
@@ -150,7 +195,14 @@ abstract class SdKey {
   String toString() => _key.toString();
 
   /// Returns the JSON Web Key version of the key
-  Map<String, dynamic> toJson() => _key.toJson();
+  Map<String, dynamic> toJson() {
+    try {
+      return _key.toJWK();
+    } catch (e) {
+      throw UnsupportedError(
+          'This key type does not support conversion to JWK: $e');
+    }
+  }
 }
 
 /// Represents a private key for signing SD-JWTs.
@@ -193,9 +245,23 @@ class SDKeySigner implements Signer {
 
   @override
   Future<Uint8List> sign(Uint8List input) async {
-    final sig =
-        _privateKey._key.sign(input, algorithm: _privateKey.algIanaName());
-    return Uint8List.fromList(sig);
+    final key = _privateKey._key;
+    final algorithm = _privateKey.alg._jwa;
+
+    final headerMap = <String, String>{'alg': _privateKey.alg.ianaName};
+    if (keyId != null) {
+      headerMap['kid'] = keyId!;
+    }
+
+    final jwsProtectedHeader = json.encode(headerMap);
+    final jwsProtectedHeaderB64Url =
+        base64Url.encode(utf8.encode(jwsProtectedHeader)).replaceAll('=', '');
+    final jwsPayloadB64Url = base64Url.encode(input).replaceAll('=', '');
+
+    final dataToSign =
+        utf8.encode('$jwsProtectedHeaderB64Url.$jwsPayloadB64Url');
+
+    return algorithm.sign(key, dataToSign);
   }
 
   @override
@@ -222,8 +288,17 @@ class SDKeyVerifier implements Verifier {
   /// Returns whether the signature is correct
   @override
   bool verify(Uint8List data, Uint8List signature) {
-    return _publicKey._key
-        .verify(data, signature, algorithm: _publicKey.algIanaName());
+    try {
+      final key = _publicKey._key;
+      final tokenWithoutSignature = utf8.decode(data);
+      final String signatureBase64 =
+          base64Url.encode(signature).replaceAll('=', '');
+      final token = '$tokenWithoutSignature.$signatureBase64';
+      JWT.verify(token, key);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   /// This Verifier can be used with any of the bundled algorithms.

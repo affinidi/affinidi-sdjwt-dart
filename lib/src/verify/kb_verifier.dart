@@ -1,4 +1,4 @@
-import 'package:jose_plus/jose.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 import 'package:selective_disclosure_jwt/src/base/action.dart';
 import 'package:selective_disclosure_jwt/src/utils/kb_jwt/base64_digest_calculator.dart';
@@ -40,9 +40,23 @@ class KbVerifyAction extends Action<SdJwt, bool> with JwtVerifier {
           'only `jwk` based proof of possession is supported at the moment');
     }
 
-    final kbJWS = JsonWebSignature.fromCompactSerialization(kbJwt);
-    final alg = kbJWS.commonHeader.algorithm;
-    final kbJwtPayload = kbJWS.unverifiedPayload.jsonContent;
+    final JWT decodedKbJwt;
+    try {
+      decodedKbJwt = JWT.decode(kbJwt);
+    } catch (e) {
+      throw ArgumentError('Invalid KB-JWT format or failed to decode: $e');
+    }
+
+    final headerJson = decodedKbJwt.header;
+    if (headerJson == null) {
+      throw Exception('KB-JWT is missing header');
+    }
+
+    final alg = headerJson['alg'] as String?;
+    final kbJwtPayload = decodedKbJwt.payload;
+    if (kbJwtPayload == null) {
+      throw Exception('KB-JWT is missing payload');
+    }
 
     if (alg == null || alg.isEmpty) {
       throw Exception(

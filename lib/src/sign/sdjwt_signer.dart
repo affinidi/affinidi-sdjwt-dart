@@ -66,16 +66,27 @@ class SdJwtSigner with JwtSigner {
       sdClaims['cnf'] = _cnfExtractor.execute(input.holderPublicKey!);
     }
 
+    final jwsHeader = <String, dynamic>{
+      'alg': input.signer.algIanaName,
+      'typ': input.typ
+    };
+    if (input.signer.keyId != null) {
+      jwsHeader['kid'] = input.signer.keyId!;
+    }
+
     final String token = await generateSignedCompactJwt(
-        signer: input.signer,
-        claims: sdClaims,
-        protectedHeaders: {'typ': input.typ});
+      signer: input.signer,
+      claims: sdClaims,
+      protectedHeaders: {'typ': input.typ},
+    );
 
     final signedToken = SdJwt._fromParts(
-        jwsToken: token,
-        disclosures: disclosures,
-        payload: sdClaims,
-        hasher: input.hasher);
+      jwsToken: token,
+      header: jwsHeader,
+      disclosures: disclosures,
+      payload: sdClaims,
+      hasher: input.hasher,
+    );
 
     signedToken._verified._isJwsVerified = true;
 
