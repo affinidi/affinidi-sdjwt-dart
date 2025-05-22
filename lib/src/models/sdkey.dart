@@ -65,6 +65,7 @@ enum SdJwtSignAlgorithm {
       case 'P-521':
         return SdJwtSignAlgorithm.es512;
       case 'SECP256K1':
+      case 'P-256K':
         return SdJwtSignAlgorithm.es256k;
       default:
         throw ArgumentError('Invalid curve: $curve');
@@ -75,6 +76,7 @@ enum SdJwtSignAlgorithm {
   static String normalizeCurve(String curve) {
     switch (curve.toUpperCase()) {
       case 'SECP256K1':
+      case 'P-256K':
         return 'secp256k1';
       default:
         return curve;

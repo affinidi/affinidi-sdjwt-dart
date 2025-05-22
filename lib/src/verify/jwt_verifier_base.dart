@@ -48,7 +48,7 @@ mixin JwtVerifier {
       throw Exception('Invalid JWT format: expected 3 parts');
     }
 
-    final signInput = utf8.encode('${parts[0]}.${parts[1]}');
+    final signInput = ascii.encode('${parts[0]}.${parts[1]}');
     final signature = base64Url.decode(base64Url.normalize(parts[2]));
 
     return verifier.verify(
