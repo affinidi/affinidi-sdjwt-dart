@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:jose_plus/jose.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:meta/meta.dart';
 import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 import 'package:selective_disclosure_jwt/src/base/action.dart';
@@ -10,8 +10,8 @@ import 'package:selective_disclosure_jwt/src/sign/nonce_generator.dart';
 import 'package:selective_disclosure_jwt/src/utils/common.dart';
 // import 'package:selective_disclosure_jwt/src/sign/nonce_generator.dart';
 import 'package:selective_disclosure_jwt/src/utils/unpack_disclosures.dart';
-import 'package:selective_disclosure_jwt/src/verify/kb_verifier.dart';
 import 'package:selective_disclosure_jwt/src/verify/jwt_verifier_base.dart';
+import 'package:selective_disclosure_jwt/src/verify/kb_verifier.dart';
 
 import '../sign/claim_processing/claim_processor.dart';
 import '../utils/cnf_extractor.dart';
@@ -126,8 +126,16 @@ class SdJwt {
           "Invalid SD-JWT: Disclosures cannot be duplicate in sd-jwt");
     }
 
-    final jwt = JsonWebSignature.fromCompactSerialization(issuerJwt);
-    final payload = fromEncodedBytes(jwt.data);
+    final JWT decodedIssuerJwt;
+    try {
+      decodedIssuerJwt = JWT.decode(issuerJwt);
+    } catch (e) {
+      throw Exception(
+          "Invalid SD-JWT: JWT part not well formatted or failed to decode. Error: $e");
+    }
+
+    final headerJson = decodedIssuerJwt.header!;
+    final payload = decodedIssuerJwt.payload!;
 
     final hasher = Base64EncodedOutputHasher(
         Hasher.fromString(payload['_sd_alg'], customHasher: customHasher));
@@ -147,7 +155,7 @@ class SdJwt {
     return SdJwt._(
       serialized: serialized,
       payload: payload,
-      header: jwt.commonHeader.toJson(),
+      header: headerJson,
       disclosuresDigestMap: disclosuresDigestIndex,
       disclosuresPathIndex: disclosuresPathIndex,
       claims: claims,
@@ -172,7 +180,8 @@ class SdJwt {
     required Map<String, dynamic> payload,
     required Hasher<String, String> hasher,
   }) {
-    final jws = JsonWebSignature.fromCompactSerialization(jwsToken);
+    final JWT decodedJws = JWT.decode(jwsToken);
+    final Map<String, dynamic> header = decodedJws.header!;
 
     final DisclosureMap disclosuresDigestIndex =
         DisclosureMap.from(disclosures);
@@ -195,11 +204,12 @@ class SdJwt {
     return SdJwt._(
       serialized: serialized,
       payload: payload,
-      header: jws.commonHeader.toJson(),
+      header: header,
       disclosuresDigestMap: disclosuresDigestIndex,
       disclosuresPathIndex: disclosuresPathIndex,
       claims: claims,
       jwsString: jwsToken,
+      kbString: null,
       hasher: hasher,
     );
   }

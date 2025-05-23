@@ -4,13 +4,12 @@ import 'dart:io';
 import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 import 'package:selective_disclosure_jwt/src/models/sdjwt.dart';
 import 'package:selective_disclosure_jwt/src/verify/kb_verifier.dart';
-import 'package:jose_plus/jose.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('KBVerifierInterface', () {
     late KbVerifyAction verifyAction;
-    late JsonWebKey mockHolderKey;
+    late Map<String, dynamic> mockHolderKey;
     late SdJwt sdJwtWithoutCnf;
     late SdJwt sdJwtWithCnf;
     late Signer signer;
@@ -64,12 +63,12 @@ void main() {
 
       verifyAction = KbVerifyAction();
 
-      mockHolderKey = JsonWebKey.fromJson({
+      mockHolderKey = {
         'kty': 'EC',
         'crv': 'P-256',
         'x': base64Url.encode(List.filled(32, 1)),
         'y': base64Url.encode(List.filled(32, 2))
-      })!;
+      };
     });
 
     Future<String> createMockJwt(Map<String, dynamic> payload) async {
@@ -83,7 +82,7 @@ void main() {
         'exp': DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/
             1000,
         'iat': DateTime.now().millisecondsSinceEpoch ~/ 1000,
-        'cnf': {'jwk': mockHolderKey.toJson()},
+        'cnf': {'jwk': mockHolderKey},
         'sd_hash': 'differentHash'
       });
 

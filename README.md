@@ -44,6 +44,7 @@ The package supports the following signing algorithms:
 - `ES256K` - ECDSA using secp256k1 curve and SHA-256
 - `RS256` - RSASSA-PKCS1-v1_5 using SHA-256
 - `HS256` - HMAC using SHA-256
+- `EdDSA` (Ed25519) - Edwards-curve Digital Signature Algorithm using Ed25519
 - Additional algorithms: `RS384`, `RS512`, `ES384`, `ES512`, `HS384`, and `HS512`
 
 For hash calculation in disclosures:

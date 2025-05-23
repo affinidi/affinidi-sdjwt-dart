@@ -27,6 +27,12 @@ void main() async {
     SdJwtSignAlgorithm.es256, // Choose appropriate algorithm
   );
 
+  // Ed25519/EdDSA example
+  final eddsaPrivateKey = SdPrivateKey(
+    eddsaPrivateKeyPem, // Your Ed25519 private key in PEM format
+    SdJwtSignAlgorithm.eddsa,
+  );
+
   // Create the SD-JWT handler and signer
   final handler = SdJwtHandlerV1();
   final signer = SDKeySigner(issuerPrivateKey);

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:jose_plus/jose.dart';
 import 'package:selective_disclosure_jwt/selective_disclosure_jwt.dart';
 import 'package:selective_disclosure_jwt/src/models/sdjwt.dart';
 import 'package:selective_disclosure_jwt/src/validator/kb_signer_input_validator.dart';
@@ -11,10 +10,7 @@ import 'package:test/test.dart';
 void main() {
   group('KbVerifier', () {
     late KbVerifyAction verifyAction;
-    late SdJwtVerifyAction sdVerifier;
-    late SDKeyVerifier verifier;
-    late SdPublicKey issuerPublicKey;
-    late JsonWebKey mockHolderKey;
+    late Map<String, dynamic> mockHolderKey;
     late SdJwt sdJwtWithoutCnf;
     late SdJwt sdJwtWithCnf;
     late Signer signer;
@@ -46,7 +42,6 @@ void main() {
           SdPrivateKey(privateKeyStr, SdJwtSignAlgorithm.es256);
       final holderPublicKey =
           SdPublicKey(publicKeyStr, SdJwtSignAlgorithm.es256);
-      issuerPublicKey = SdPublicKey(publicKeyStr, SdJwtSignAlgorithm.rs256);
 
       signer = SDKeySigner(issuerPrivateKey);
 
@@ -70,18 +65,14 @@ void main() {
 
       verifyAction = KbVerifyAction();
 
-      sdVerifier = SdJwtVerifyAction();
-
-      verifier = SDKeyVerifier(issuerPublicKey);
-
       validator = AsyncKbJwtSignerInputValidator();
 
-      mockHolderKey = JsonWebKey.fromJson({
+      mockHolderKey = {
         'kty': 'EC',
         'crv': 'P-256',
         'x': base64Url.encode(List.filled(32, 1)),
         'y': base64Url.encode(List.filled(32, 2))
-      })!;
+      };
     });
 
     Future<String> createMockJwt(Map<String, dynamic> payload) async {
@@ -106,11 +97,13 @@ void main() {
         'exp': DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/
             1000,
         'iat': DateTime.now().millisecondsSinceEpoch ~/ 1000,
-        'cnf': {'jwk': mockHolderKey.toJson()}
+        'cnf': {'jwk': mockHolderKey}
       });
 
-      expect(() => verifyAction.execute(sdJwtWithCnf.withKbJwt(jwt)),
-          throwsException);
+      expect(
+          () => verifyAction.execute(sdJwtWithCnf.withKbJwt(jwt)),
+          throwsA(isA<Exception>().having((e) => e.toString(), 'message',
+              contains('SD Hash claim is missing'))));
     });
 
     test('verify should return false for invalid SD hash', () async {
@@ -118,7 +111,7 @@ void main() {
         'exp': DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/
             1000,
         'iat': DateTime.now().millisecondsSinceEpoch ~/ 1000,
-        'cnf': {'jwk': mockHolderKey.toJson()},
+        'cnf': {'jwk': mockHolderKey},
         'sd_hash': 'differentHash'
       });
 
@@ -136,7 +129,7 @@ void main() {
                 .subtract(Duration(hours: 2))
                 .millisecondsSinceEpoch ~/
             1000,
-        'cnf': {'jwk': mockHolderKey.toJson()},
+        'cnf': {'jwk': mockHolderKey},
         'sd_hash': 'mockHash'
       });
 
@@ -144,17 +137,22 @@ void main() {
       expect(result, isFalse);
     });
 
-    test('throws exception if SdJwt is not verified', () {
-      final verifiedSdJwt = sdVerifier.execute(SdJwtVerifierInput(
-        sdJwt: sdJwtWithoutCnf,
-        verifier: verifier,
-        config: {},
-      ));
+    test('throws exception if SdJwt is not verified', () async {
+      final SdJwtSigner sdSignerForTest = SdJwtSigner();
+      final SdJwtSignerInput localSignerInput = SdJwtSignerInput(
+        claims: Map<String, dynamic>.from(claims),
+        disclosureFrame: disclosureFrame,
+        hasher: Base64EncodedOutputHasher.base64Sha256,
+        signer: signer,
+      );
+      final newlySignedJwt = await sdSignerForTest.execute(localSignerInput);
 
-      expect(verifiedSdJwt.isVerified, isFalse);
+      final unverifiedSdJwt = SdJwt.parse(newlySignedJwt.serialized);
+
+      expect(unverifiedSdJwt.isVerified != true, isTrue);
 
       final input = KbJwtSignerInput(
-        sdJwtToken: sdJwtWithoutCnf,
+        sdJwtToken: unverifiedSdJwt,
         disclosuresToKeep: {},
         audience: 'https://example.com',
         holderPublicKey: null,
