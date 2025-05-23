@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-05-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`selective_disclosure_jwt` - `v1.1.0`](#selective_disclosure_jwt---v110)
+
+---
+
+#### `selective_disclosure_jwt` - `v1.1.0`
+
+ - **FEAT**: Ed25519 algorithm support added (#11).
+
+## 1.1.0
+
+ - **FEAT**: Ed25519 algorithm support added (#11).
+
+
 ## 2025-05-12
 
 ### Changes
