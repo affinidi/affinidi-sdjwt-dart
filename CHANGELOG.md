@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-10-13
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`selective_disclosure_jwt` - `v1.1.1`](#selective_disclosure_jwt---v111)
+
+---
+
+#### `selective_disclosure_jwt` - `v1.1.1`
+
+ - **FIX**: add type safety for JWT payload handling (#12).
+
+## 1.1.1
+
+ - **FIX**: add type safety for JWT payload handling (#12).
+
+
 ## 2025-05-23
 
 ### Changes
