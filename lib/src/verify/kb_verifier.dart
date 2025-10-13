@@ -54,8 +54,8 @@ class KbVerifyAction extends Action<SdJwt, bool> with JwtVerifier {
 
     final alg = headerJson['alg'] as String?;
     final kbJwtPayload = decodedKbJwt.payload;
-    if (kbJwtPayload == null) {
-      throw Exception('KB-JWT is missing payload');
+    if (kbJwtPayload is! Map<String, dynamic>) {
+      throw Exception('Invalid KB-JWT: payload must be a JSON object');
     }
 
     if (alg == null || alg.isEmpty) {

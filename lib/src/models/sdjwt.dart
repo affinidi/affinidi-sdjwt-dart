@@ -135,7 +135,10 @@ class SdJwt {
     }
 
     final headerJson = decodedIssuerJwt.header!;
-    final payload = decodedIssuerJwt.payload!;
+    final payload = decodedIssuerJwt.payload;
+    if (payload is! Map<String, dynamic>) {
+      throw Exception("Invalid SD-JWT: JWT payload must be a JSON object");
+    }
 
     final hasher = Base64EncodedOutputHasher(
         Hasher.fromString(payload['_sd_alg'], customHasher: customHasher));
